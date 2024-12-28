@@ -1,6 +1,24 @@
 ## Order
 
 ```py
+
+class ParcelSize(enum.StrEnum):
+    SMALL = "small"
+    MEDIUM = "medium"
+    LARGE = "large"
+
+
+class ParcelDimensions(TypedDict):
+    length: int
+    width: int
+    height: float
+
+
+class Parcel(TypedDict):
+    size: ParcelSize
+    weight: float
+    dimensions: ParcelDimensions
+    fragile: bool
 class Order(TypedDict):
     id: str
     consumer: Consumer

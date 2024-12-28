@@ -2,8 +2,9 @@
 
 ```py
 class Driver(TypedDict):
-    id: str
+    id: uuid
     name: str
+    profile_picture:str
     license_number: str
     phone_number: str
     email: str
@@ -20,6 +21,7 @@ class Driver(TypedDict):
 {
   "id": "00000000-0000-0000-0000-000000000002",
   "name": "John Doe",
+  "profile_picture":"www.example.com/profile_pic"
   "license_number": "DL123456789",
   "phone_number": "+9876543210",
   "email": "john.doe@example.com",
