@@ -4,7 +4,8 @@
 
 ### If you have `poetry` installed, 
 
-- Step 1: run the following command to install dependencies, create a virtual environment, and start the application:
+Run the following command to install dependencies, create a virtual environment, and start the application:
+
 ```bash
 poetry install
 poetry shell
@@ -13,7 +14,8 @@ make run
 
 ### If you don't have `poetry` installed,
 
-- Run the following command to run the application inside a docker container:
+Run the following command to run the application inside a docker container:
+
 ```bash
 make run.docker
 ```
