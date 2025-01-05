@@ -1,4 +1,4 @@
-.phony: docker.build docker.run docker.build.quite
+.phony: docker.build docker.run docker.build.quite run build upload
 
 run:
 	@echo "Make: Running the package..."
@@ -15,3 +15,19 @@ docker.build.quite:
 docker.run: docker.build.quite
 	@echo "Make: Running docker container..."
 	@docker run -p 8000:8000 -v $(PWD):/app domain_model:dev run
+
+build:
+	@echo "Make: Building package..."
+	@python3 -m pip install build
+	@python3 -m build --wheel
+
+upload: build
+	@echo "Make: Uploading package..."
+	@twine upload dist/*
+	@rm -rf dist
+	@rm -rf build
+	@rm -rf *.egg-info
+	@rm -rf .pytest_cache
+	@rm -rf .coverage
+	@rm -rf .eggs
+	@rm -rf .tox

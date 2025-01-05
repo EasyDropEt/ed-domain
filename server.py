@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 
-from src.domain.entities import (
+from src.ed_domain_model.entities import (
     Business,
     Car,
     Consumer,
@@ -16,7 +16,7 @@ from src.domain.entities import (
     WarehouseWorker,
 )
 
-app = FastAPI(title="domain-models", description="Domain models API")
+app = FastAPI(title="domain-models", description="domain models API")
 
 
 @app.get("/business", response_model=Business)
