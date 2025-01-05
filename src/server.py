@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 
-from src.ed_domain_model.entities import (
+from ed_domain_model.entities import (
     Business,
     Car,
     Consumer,

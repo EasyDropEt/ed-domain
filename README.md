@@ -4,19 +4,11 @@
 
 ### If you have `poetry` installed, 
 
-- Step 1: run the following command to install the dependencies:
+- Step 1: run the following command to install dependencies, create a virtual environment, and start the application:
 ```bash
 poetry install
-```
-
-- Step 2: run the following command to create a virtual environment:
-```bash
 poetry shell
-```
-
-- Step 3: Once you have activated the virtual environment, you can run the following command to start the application:
-```bash
-python server.py
+make run
 ```
 
 ### If you don't have `poetry` installed,
