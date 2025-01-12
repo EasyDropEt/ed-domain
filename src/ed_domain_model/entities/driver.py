@@ -7,7 +7,7 @@ class Driver(TypedDict):
     id: UUID
     first_name: str
     last_name: str
-    profile_picture: str
+    profile_image: str
     phone_number: str
     email: NotRequired[str]
     location_id: UUID
