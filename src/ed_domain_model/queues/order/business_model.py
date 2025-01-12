@@ -1,7 +1,7 @@
 from typing import TypedDict
 from uuid import UUID
 
-from src.ed_domain_model.entities.location import Location
+from ed_domain_model.entities.location import Location
 
 
 class BusinessModel(TypedDict):
