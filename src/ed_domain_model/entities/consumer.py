@@ -11,7 +11,7 @@ class Consumer(TypedDict):
     email: NotRequired[str]
 
     # User attributes
-    user_id: list[UUID]
+    user_id: UUID
     notification_ids: list[UUID]
     active_status: bool
     created_datetime: datetime

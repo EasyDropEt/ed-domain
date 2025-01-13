@@ -1,3 +1,4 @@
+from ed_domain_model.entities.bill import Bill
 from ed_domain_model.entities.business import Business
 from ed_domain_model.entities.car import Car
 from ed_domain_model.entities.consumer import Consumer
@@ -14,6 +15,7 @@ from ed_domain_model.entities.warehouse_worker import WarehouseWorker
 __all__ = [
     "Business",
     "Car",
+    "Bill",
     "Consumer",
     "DeliveryJob",
     "Driver",

@@ -2,7 +2,7 @@
 
 run:
 	@echo "Make: Running the package..."
-	@python server.py
+	@python src/server.py
 
 docker.build:
 	@echo "Make: Building a docker image... (Might be minutes)"
