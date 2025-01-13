@@ -5,7 +5,6 @@
 ### If you have `poetry` installed, 
 
 Run the following command to install dependencies, create a virtual environment, and start the application:
-
 ```bash
 poetry install
 poetry shell
