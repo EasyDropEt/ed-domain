@@ -11,6 +11,7 @@ from ed_domain_model.entities.order import Order
 from ed_domain_model.entities.route import Route
 from ed_domain_model.entities.user import User
 from ed_domain_model.entities.warehouse_worker import WarehouseWorker
+from src.ed_domain_model.entities.otp import Otp
 
 __all__ = [
     "Business",
@@ -23,6 +24,7 @@ __all__ = [
     "Location",
     "Notification",
     "Order",
+    "Otp",
     "Route",
     "User",
     "WarehouseWorker",
