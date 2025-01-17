@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import NotRequired, TypedDict
+from typing import TypedDict
 from uuid import UUID
 
 
@@ -8,7 +8,8 @@ class Consumer(TypedDict):
     first_name: str
     last_name: str
     phone_number: str
-    email: NotRequired[str]
+    email: str
+    location_id: UUID
 
     # User attributes
     user_id: UUID
