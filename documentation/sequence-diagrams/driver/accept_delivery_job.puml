@@ -1,0 +1,29 @@
+@startuml
+
+title "Driver: Accept delivery job"
+
+actor Driver as D
+
+participant "Drivers's Mobile App" as App
+participant Backend
+
+App <- Backend: Generates notifications when jobs are available
+D <- App: Pushes notifications
+D --> App ++: Opens the driver's mobile app
+D <-- App: Shows home page
+D -> App: Navigates to delivery jobs page
+D <-- App: Shows available jobs
+D -> App: Picks a delivery job
+D <-- App: Shows details
+D -> App: Clicks on accept
+App -> Backend ++: Post: Accept delivery job
+Backend -> Backend: Validates driver's credentials \n and checks job not already taken \n by another driver
+group If valid
+  App <-- Backend: 200 OK
+  D <-- App: Shows success and navigates to current delivery page
+else else
+  App <-- Backend --: 400 Bad request
+  D <-- App--: Shows the error message
+end
+
+@enduml
