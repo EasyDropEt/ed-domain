@@ -1,0 +1,36 @@
+@startuml
+
+' Components
+component "<<UI>>\nDriver's Mobile\nApplication" as D
+component "<<UI>>\nBusiness Dashboard" as Dash
+component "<<UI>>\nConsumer's Mobile\nApplication" as C
+component "API Gateway" as Gateway
+component "Core Service" as Core
+component "Notification Service" as Notification
+component "Auth Service" as Auth
+component "Optimization Service" as Optimization
+
+' Databases
+database "Auth\nDatabase" as AuthDb
+database "Core\nDatabase" as CoreDb
+database "Notification\nDatabase" as NotificationDb
+
+' Relationships
+D ..> Gateway
+Dash ..> Gateway
+C ..> Gateway
+
+Gateway ..> Auth
+Gateway --> Core
+
+Core ..> Notification
+Core --> Optimization
+Core --> Auth
+Core --> CoreDb
+
+Auth ..> Notification
+Auth --> AuthDb
+
+Notification --> NotificationDb
+
+@enduml

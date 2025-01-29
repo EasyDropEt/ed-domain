@@ -1,0 +1,32 @@
+@startuml
+
+title "Business: Sign-in"
+
+actor Business as B
+
+participant "Businesss Dashboard" as Dash
+participant Backend
+
+B -> Dash ++: Opens the business dashboard
+B <-- Dash: Shows the sign in screen
+B -> Dash: Enters their email/phone number and password
+Dash -> Backend ++: Post: Sign in business
+group If business details are valid
+  Dash <-- Backend: 200 OK
+  B <- Backend: Sends a one-time password
+  B <-- Dash: Shows the OTP confirmation screen
+else else
+  Dash <-- Backend: 401 Unauthorized
+  B <-- Dash: Shows the error message
+end
+B --> Dash: Enters the OTP
+Dash -> Backend: Post: Validate business's OTP
+group If OTP is valid
+  Dash <-- Backend: 200 OK: Sends business details and access token
+  B <-- Dash: Shows home page
+else else
+  Dash <-- Backend --: 401 Unauthorized
+  B <-- Dash --: Shows the error message
+end
+
+@enduml

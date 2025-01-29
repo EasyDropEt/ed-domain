@@ -1,0 +1,26 @@
+@startuml
+
+title "Business: Delete order"
+
+actor Business as B
+
+participant "Business Dashboard" as Dash
+participant Backend
+
+B -> Dash ++: Opens the dashboard
+B <-- Dash: Shows home page
+B -> Dash: and navigates to orders page
+B <-- Dash: Shows the orders page
+B -> Dash: Select order
+B <-- Dash: Shows order
+B -> Dash: Delete order
+Dash -> Backend ++: Delete: Delete order
+group If order hasn't been picked up already
+  Dash <-- Backend: 204 No Content
+  B <-- Dash: Shows order delete
+else else
+  Dash <-- Backend --: 401 Bad request
+  B <-- Dash ++: Shows error
+end
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+
+title "Driver: Complete a Pick-up"
+
+actor Driver as D
+participant "Drivers's Mobile App" as App
+
+actor Business as B
+
+participant Backend
+
+D -> App ++: Opens the driver's mobile app
+D <-- App: Shows current delivery job page
+D -> App: Marks a pick-up as complete
+App -> Backend ++: Post: Complete a pick-up
+App <-- Backend: 200 OK
+D <-- App: Shows enter OTP page
+B <- Backend ++: OTP to complete pick-up as complete
+D <- B --: Tell OTP to driver 
+D -> App: Enters confirmation OTP
+App -> Backend: Post: Confirm a pick-up
+App <-- Backend --: 200 OK
+D <-- App --: Shows pick-up as complete
+
+@enduml

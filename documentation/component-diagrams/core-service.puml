@@ -1,0 +1,74 @@
+@startuml
+
+interface "HTTP" as CoreHttp
+interface "Message Queue" as CoreMQ
+component "Core Service" as Core {
+  component "Presentation" as CorePresentation {
+    component "API" as CorePresentationAPI
+
+    component "Driver Controller" as CorePresentationDriverController
+    component "Business Controller" as CorePresentationBusinessController
+    component "Consumer Controller" as CorePresentationConsumerController
+    component "Order Controller" as CorePresentationOrderController
+    component "Delivery Jobs Controller" as CorePresentationDeliveryJobController
+    component "Mediator" as CorePresentationMediator
+
+    CorePresentationAPI ..> CorePresentationMediator
+    CorePresentationAPI ..> CorePresentationBusinessController
+    CorePresentationAPI ..> CorePresentationConsumerController
+    CorePresentationAPI ..> CorePresentationDriverController
+    CorePresentationAPI ..> CorePresentationOrderController
+    CorePresentationAPI ..> CorePresentationDeliveryJobController
+  }
+
+  component "Appliction" as CoreApplication {
+    component "Common Module" as CoreApplicationCommonModule
+
+    component "Contracts" as CoreApplicationContracts {
+      component Persistence as CoreApplicationContractsPersistence {
+        component ABCUnitOfWrok
+      }
+
+      component "Message Broker" as CoreApplicationContractsMessageBroker {
+        component ABCProducer
+        component ABCSubscriber
+      }
+    }
+
+    component "Driver Module" as CoreApplicationDriverModule {
+      component "Dtos Module" as CoreApplicationDriverModuleDtosModule
+      component "Requests Module" as CoreApplicationDriverModuleRequestsModule
+      component "Handlers Module" as CoreApplicationDriverModuleHandlersModule
+
+      CoreApplicationDriverModuleRequestsModule ..> CoreApplicationDriverModuleDtosModule
+      CoreApplicationDriverModuleHandlersModule ..> CoreApplicationDriverModuleRequestsModule
+    }
+
+    component "Business Module" as CoreApplicationBusinessModule
+    component "Consumer Module" as CoreApplicationConsumerModule
+    component "Order Module" as CoreApplicationOrderModule
+    component "Delivery Jobs Module" as CoreApplicationDeliveryJobModule
+  }
+
+  component "Infrastructure" as CoreInfrastructure {
+    component "Persistence" as CoreInfrastructurePersistence {
+      component DbClient as CoreInfrastructurePersistenceDbClient
+      component UnitOfWork as CoreInfrastructurePersistenceUnitOfWork
+
+      CoreInfrastructurePersistenceUnitOfWork ..> CoreInfrastructurePersistenceDbClient
+    }
+    component "Message Broker" as CoreInfrastructureMessage {
+      component "RabbitMQ Prodcer" as CoreInfrastructureRabbitMQProducer
+      component "RabbitMQ Subscriber" as CoreInfrastructureRabbitMQSubscriber
+    }
+  }
+
+  CorePresentationMediator --> CoreApplicationDriverModuleRequestsModule
+  CorePresentationMediator --> CoreApplicationDriverModuleHandlersModule
+}
+
+CoreHttp -- CorePresentationAPI
+
+CoreInfrastructure ..> CoreApplicationContracts
+
+@enduml

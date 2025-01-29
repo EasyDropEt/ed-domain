@@ -1,0 +1,25 @@
+@startuml
+
+title "Driver: Complete a delivery drop-off"
+
+actor Driver as D
+participant "Drivers's Mobile App" as App
+
+actor Consumer as C
+
+participant Backend
+
+D -> App ++: Opens the driver's mobile app
+D <-- App: Shows current delivery job page
+D -> App: Marks a delivery drop-off as complete
+App -> Backend ++: Post: Complete a delivery drop-off
+App <-- Backend: 200 OK
+D <-- App: Shows enter OTP page
+C <- Backend ++: OTP to complete delivery drop-off as complete
+D <- C --: Tell OTP to driver 
+D -> App: Enters confirmation OTP
+App -> Backend: Post: Confirm a delivery drop-off
+App <-- Backend --: 200 OK
+D <-- App --: Shows delivery as complete
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+
+title "Business: Update order"
+
+actor Business as B
+
+participant "Business Dashboard" as Dash
+participant Backend
+
+B -> Dash ++: Opens the dashboard
+B <-- Dash: Shows home page
+B -> Dash: and navigates to orders page
+B <-- Dash: Shows the orders page
+B -> Dash: Select order
+B <-- Dash: Shows order
+B -> Dash: Enter new order details
+Dash -> Backend ++: Update: Update order
+group If order hasn't been picked-up already
+  Dash <-- Backend: 200 No Content
+  B <-- Dash: Shows order update
+else else
+  Dash <-- Backend --: 401 Bad request
+  B <-- Dash ++: Shows error
+end
+
+@enduml
