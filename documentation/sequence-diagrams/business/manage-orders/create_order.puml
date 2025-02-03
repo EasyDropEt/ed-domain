@@ -9,10 +9,10 @@ participant Backend
 
 B -> Dash ++: Opens the dashboard
 B <-- Dash: Shows home page
-B -> Dash: and navigates to create order page
+B -> Dash: Navigates to create order page
 B <-- Dash: Shows the create order page
 B -> Dash: Enters order details
-Dash -> Backend: Post: Create order
+Dash -> Backend ++: Post: Create order
 group If create order details valid
   Dash <-- Backend: 201 Created
   B <-- Dash: Shows order details

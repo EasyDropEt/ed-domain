@@ -1,0 +1,21 @@
+@startuml
+class DeliveryJob {
+  {field} + UUID id
+  + List<UUID> order_ids
+  + UUID route_id
+  + UUID driver_id
+  + UUID driver_payment_id
+  + DeliveryJobStatus status
+  + float estimated_payment
+  + DateTime estimated_completion_time
+
+  {method} +get_status(): DeliveryJobStatus
+  +set_status(status: DeliveryJobStatus): void
+  +add_order(order: UUID): void
+  +remove_order(order: UUID): void
+  +set_driver_id(driver_id: UUID): void
+  +set_driver_payment_id(driver_payment_id: UUID): void
+  +set_estimated_payment(estimated_payment: float): void
+  +set_estimated_completion_time(estimated_completion_time: DateTime): void
+}
+@enduml

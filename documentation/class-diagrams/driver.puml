@@ -1,0 +1,29 @@
+@startuml
+class Driver {
+  {field} + UUID id
+  + String first_name
+  + String last_name
+  + String profile_image
+  + String phone_number
+  + String email
+  + UUID location_id
+  + UUID car_id
+  + List<UUID> delivery_job_ids
+  + List<UUID> payment_ids
+  + UUID user_id
+  + List<UUID> notification_ids
+  + boolean active_status
+  + DateTime created_datetime
+  + DateTime updated_datetime
+
+  {method} +get_full_name(): String
+  +set_phone_number(phone: String): void
+  +set_profile_image(profile_image: String): void
+  +add_payment_id(payment_id: UUID): void
+  +remove_payment_id(payment_id: UUID): void
+  +add_notification(notification_id: UUID): void
+  +remove_notification(notification_id: UUID): void
+  +add_delivery_job_id(job_id: UUID): void
+  +remove_delivery_job_id(job_id: UUID): void
+}
+@enduml

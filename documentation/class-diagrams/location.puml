@@ -1,0 +1,14 @@
+@startuml
+class Location {
+  {field} +UUID id
+  +String address
+  +float latitude
+  +float longitude
+  +String postal_code
+  +String city
+  +String country
+
+  {method} +get_full_address(): String
+  +set_address(address: String): void
+}
+@enduml

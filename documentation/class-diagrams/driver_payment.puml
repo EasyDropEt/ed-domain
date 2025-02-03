@@ -1,0 +1,33 @@
+@startuml
+enum driver_payment_status {
+    PENDING
+    COMPLETED
+    FAILED
+    CANCELLED
+}
+
+enum payment_method {
+    BANK_TRANSFER
+    TELEBIRR
+}
+
+class detail {
+    payment_method payment_method
+    String account_name
+    String account_number
+    String phone_number
+}
+
+class DriverPayment {
+  {field} +UUID id
+  +float amount
+  +DriverPaymentStatus status
+  +datetime date
+  +detail detail
+
+  {method} +get_amount(): float
+  +set_amount(amount: float): void
+  +get_status(): driver_payment_status
+  +set_status(status: driver_payment_status): void
+}
+@enduml

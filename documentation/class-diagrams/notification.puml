@@ -1,0 +1,13 @@
+@startuml
+class Notification {
+  {field} +UUID id
+  +UUID user_id
+  +NotificationType notification_type
+  +String message
+  +boolean read_status
+  +datetime created_datetime
+
+  {method} +get_message(): String
+  +mark_as_read(): void
+}
+@enduml
