@@ -18,6 +18,9 @@ class WayPoint(TypedDict):
 
 
 class Route(TypedDict):
+    id: UUID
     waypoints: list[WayPoint]
     estimated_distance_in_kms: float
     estimated_time_in_minutes: int
+    create_datetime: datetime
+    update_datetime: datetime
