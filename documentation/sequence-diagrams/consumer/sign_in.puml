@@ -1,0 +1,35 @@
+@startuml
+
+title "Consumer: Sign-in"
+
+actor Consumer as C
+
+participant "Consumers's Mobile App" as App
+participant Backend
+
+C -> App ++: Opens the consumer's mobile app
+C <-- App: Shows the sign in screen
+C -> App: Enters their phone number
+App -> Backend ++: Post: Sends sign in request
+Backend -> Backend: Validates consumer's credentials
+
+group If consumer details are valid
+  App <-- Backend: 200 OK
+  C <- Backend: Sends a one-time password
+  C <-- App: Shows the OTP confirmation screen
+else else
+  App <-- Backend: 401 Unauthorized
+  C <-- App: Shows the error message
+end
+C --> App: Enters the OTP
+App -> Backend: Post: Validate consumer's OTP
+Backend -> Backend: Validates OTP
+group If OTP is valid
+  App <-- Backend: 200 OK: Sends consumer details and access token
+  C <-- App: Shows home page
+else else
+  App <-- Backend --: 401 Unauthorized
+  C <-- App --: Shows the error message
+end
+
+@enduml

@@ -12,3 +12,4 @@ class User(TypedDict):
     password: str
     create_datetime: datetime
     update_datetime: datetime
+    verified: bool

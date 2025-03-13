@@ -1,0 +1,22 @@
+@startuml
+
+title "Driver Login"
+
+actor Driver as D
+
+participant "Driver's Mobile App" as App
+participant "Auth Service" as Auth
+
+D -> App: Opens the drivers mobile app
+App -> D: Shows the login screen
+D -> App: Enters email/phone number and password
+App -> Auth: Sends login request
+Auth -> Auth: Validates the driver's credentials
+Auth --> D: Sends a one-time password through driver's phone
+D -> App: Enters the one-time password
+App -> Auth: Sends the one-time password
+Auth -> Auth: Validates the one-time password
+Auth -> App: Sends the driver's details and a token
+App -> D: Shows the driver's details and a token
+
+@enduml

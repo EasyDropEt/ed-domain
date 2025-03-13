@@ -1,0 +1,24 @@
+@startuml
+
+title "Consumer Sign-up"
+
+actor Consumer as C
+
+participant "Consumers's Mobile App" as App
+participant Backend
+
+C -> App: Opens the consumer's mobile app
+App -> C: Shows the sign up screen
+C -> App: Enters their name, phone number, email and location
+App -> Backend: Sends sign up request
+Backend -> Backend: Validates the consumer's details
+Backend --> C: Sends a one-time password through consumer's phone
+Backend -> App: 200 OK
+App -> C: Shows the one-time password screen
+C -> App: Enters the one-time password
+App -> Backend: Sends the one-time password
+Backend -> Backend: Validates the one-time password
+Backend -> App: Sends the consumer's details and access token
+App -> C: Shows the consumer's details
+
+@enduml
