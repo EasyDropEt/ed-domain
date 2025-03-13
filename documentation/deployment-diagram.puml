@@ -1,0 +1,61 @@
+@startuml
+
+' Nodes (Physical/Virtual Machines or Servers)
+node "Mobile Devices" as Mobile {
+  component "Driver's Mobile Application" as D
+  component "Consumer's Mobile Application" as C
+}
+
+node "Web Browser" as Browser {
+  component "Business Dashboard" as Dash
+}
+
+node "API Gateway Server" as GatewayServer {
+  component "API Gateway" as Gateway
+}
+
+node "Application Server" as AppServer {
+  component "Core Service" as Core
+  component "Optimization Service" as Optimization
+}
+
+node "Auth Server" as AuthServer {
+  component "Auth Service" as Auth
+}
+
+node "Notification Server" as NotificationServer {
+  component "Notification Service" as Notification
+}
+
+node "Core Database Server" as CoreDbServer {
+  database "Core Database" as CoreDb
+}
+
+node "Auth Database Server" as AuthDbServer {
+  database "Auth Database" as AuthDb
+}
+
+node "Notification Database Server" as NotificationDbServer {
+  database "Notification Database" as NotificationDb
+}
+
+' Relationships
+D --> Gateway
+C --> Gateway
+Dash --> Gateway
+
+Gateway --> Core
+Gateway --> Auth
+
+Core --> Optimization
+Core --> Notification
+Core --> CoreDb
+
+Auth --> AuthDb
+Auth --> Notification
+
+Notification --> NotificationDb
+
+Optimization --> CoreDb
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+
+title "Business: Create Order"
+
+actor Business as B
+
+participant "Business Dashboard" as Dash
+participant Backend
+
+B -> Dash ++: Opens the dashboard
+B <-- Dash: Shows home page
+B -> Dash: Navigates to create order page
+B <-- Dash: Shows the create order page
+B -> Dash: Enters order details
+Dash -> Backend ++: Post: Create order
+group If create order details valid
+  Dash <-- Backend: 201 Created
+  B <-- Dash: Shows order details
+else else
+  Dash <-- Backend --: 401 Bad request
+  B <-- Dash ++: Shows error
+end
+
+@enduml

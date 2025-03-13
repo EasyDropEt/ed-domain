@@ -1,0 +1,15 @@
+@startuml
+
+class Bill {
+  {field} +UUID id
+  +UUID business_id
+  +float amount
+  +boolean paid
+  +datetime create_datetime
+  +datetime update_datetime
+
+  {method} +get_amount(): float
+  +set_amount(amount: float): void
+}
+
+@enduml

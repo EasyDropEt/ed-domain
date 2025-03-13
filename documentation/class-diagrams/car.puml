@@ -1,0 +1,18 @@
+@startuml
+class Car {
+  {field} +UUID id
+  +String make
+  +String model
+  +int year
+  +String registration_number
+  +String license_plate_number
+  +String color
+  +int seats
+
+  {method} +get_make(): String
+  +set_make(make: String): void
+  +get_model(): String
+  +set_model(model: String): void
+  +get_license_plate_number(): String
+}
+@enduml

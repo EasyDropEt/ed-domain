@@ -1,0 +1,67 @@
+@startuml
+
+' Packages
+package "Domain Model" as Domain
+
+' Components
+component "<<UI>>\nDriver's Mobile\nApplication" as D
+component "<<UI>>\nBusiness Dashboard" as Dash
+component "<<UI>>\nConsumer's Mobile\nApplication" as C
+component "API Gateway" as Gateway
+component "Auth Service" as Auth
+component "Core Service" as Core
+component "Notification\nService" as Notification
+component "Optimization\nService" as Optimization
+
+' Databases
+database "Auth\nDatabase" as AuthDb
+database "Core\nDatabase" as CoreDb
+database "Notification\nDatabase" as NotificationDb
+
+' Interfaces
+' Gateway interfaces
+interface "HTTP" as GatewayHttp
+GatewayHttp -- Gateway
+
+' Core interfaces
+interface "HTTP" as CoreHttp
+CoreHttp -- Core
+
+' Notification interfaces
+interface "HTTP" as NotificationHttp
+interface "Message Queue" as NotificationMQ
+NotificationHttp -- Notification
+NotificationMQ -- Notification
+
+' Auth interfaces
+interface "HTTP" as AuthHttp
+AuthHttp -left- Auth
+
+' Optimization interfaces'
+interface "Message Queue" as OptimizationMQ
+OptimizationMQ -- Optimization
+
+' Relationships
+D -- GatewayHttp
+Dash -- GatewayHttp
+C -- GatewayHttp
+
+Gateway -- AuthHttp
+Gateway -- CoreHttp
+
+Core -- NotificationMQ
+Core -- OptimizationMQ
+Core -left- AuthHttp
+Core -right- CoreDb
+Core ..> Domain
+
+Auth -- NotificationHttp
+Auth -left- AuthDb
+Auth ..> Domain
+
+Notification -- NotificationDb
+Notification ..> Domain
+
+Optimization ..> Domain
+
+@enduml

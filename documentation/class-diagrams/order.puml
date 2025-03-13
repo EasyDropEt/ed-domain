@@ -1,0 +1,16 @@
+@startuml
+class Order {
+  {field} +UUID id
+  +UUID consumer_id
+  +UUID business_id
+  +UUID bill_id
+  +datetime latest_time_of_delivery
+  +Parcel parcel
+  +OrderStatus order_status
+  +UUID delivery_job_id
+
+  {method} +get_order_status(): OrderStatus
+  +set_order_status(status: OrderStatus): void
+  +get_parcel_details(): Parcel
+}
+@enduml

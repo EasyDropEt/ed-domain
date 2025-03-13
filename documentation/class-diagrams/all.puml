@@ -1,0 +1,166 @@
+@startuml
+
+class Admin {
+  {field} +UUID id
+  +String first_name
+  +String last_name
+  +String phone_number
+  +String email
+  +UUID user_id
+  +List<UUID> notification_ids
+  +boolean active_status
+
+  {method} +get_full_name(): String
+  +get_notifications(): List<UUID>
+  +set_phone_number(phone: String): void
+  +add_notification(notification: UUID): void
+}
+
+class Business {
+  {field} + UUID id
+  + String business_name
+  + String owner_first_name
+  + String owner_last_name
+  + String phone_number
+  + String email
+  + UUID location_id
+  + UUID user_id
+  + List<UUID> notification_ids
+  + boolean active_status
+
+  {mehtod} +get_business_name(): String
+  +get_owner_full_name(): String
+  +set_business_name(name: String): void
+  +add_notification(notification: UUID): void
+  +get_notifications(): List<UUID>
+  +get_active_status(): boolean
+}
+
+class Consumer {
+  {field} +UUID id
+  +String first_name
+  +String last_name
+  +String phone_number
+  +String email
+  +UUID location_id
+  +UUID user_id
+  +List<UUID> notification_ids
+  +boolean active_status
+
+  {method} +get_full_name(): String
+  +set_phone_number(phone: String): void
+  +add_notification(notification: UUID): void
+  +remove_notification(notification: UUID): void
+}
+
+class DeliveryJob {
+  {field} + UUID id
+  + List<UUID> order_ids
+  + UUID route_id
+  + UUID driver_id
+  + float estimated_payment
+  + Datetime estimated_completion_time
+
+  {method} +get_status(): DeliveryJobStatus
+  +set_status(status: DeliveryJobStatus): void
+  +add_order(order: UUID): void
+  +remove_order(order: UUID): void
+  +set_driver_id(driver_id: UUID): void
+  +set_estimated_payment(payment: float): void
+  +set_estimated_completion_time(time: DateTime): void
+}
+
+class Driver {
+  {field} +UUID id
+  + String first_name
+  + String last_name
+  + String profile_image
+  + String phone_number
+  + String email
+  + UUID location_id
+  + List<UUID> delivery_job_ids
+  + UUID user_id
+  + List<UUID> notification_ids
+
+  {method} +get_full_name(): String
+  +set_phone_number(phone: String): void
+  +set_profile_image(profile_image: String): void
+  +add_payment_id(payment_id: UUID): void
+  +remove_payment_id(payment_id: UUID): void
+  +add_notification(notification_id: UUID): void
+  +remove_notification(notification_id: UUID): void
+  +add_delivery_job_id(job_id: UUID): void
+  +remove_delivery_job_id(job_id: UUID): void
+}
+
+class Notification {
+  {field} +UUID id
+  +UUID user_id
+  +NotificationType notification_type
+  +String message
+  +boolean read_status
+  +Datetime created_datetime
+
+  {method} +get_message(): String
+  +mark_as_read(): void
+}
+
+class User {
+  {field} +UUID id
+  +String first_name
+  +String last_name
+  +String email
+  +String phone_number
+  +String password
+  +boolean verified
+
+  {method} +get_full_name(): String
+  +set_email(email: String): void
+  +verify(): void
+  +login(email: String, password: String): boolean
+  +logout(): void
+}
+
+class Order {
+  {field} +UUID id
+  +UUID consumer_id
+  +UUID business_id
+  +Datetime latest_time_of_delivery
+  +UUID delivery_job_id
+
+  +get_parcel_details(): Parcel
+}
+
+class Route {
+  {field} +float estimated_distance_in_kms
+  +int estimated_time_in_minutes
+
+  {method} +get_estimated_distance(): float
+  +set_estimated_distance(distance: float): void
+  +get_estimated_time(): int
+  +set_estimated_time(time: int): void
+}
+
+' Relationships
+
+Business "1" *-up- "many" Notification: has
+Business --|> User: is a
+
+Consumer "1" *-up- "many" Notification: has
+Consumer --|> User: is a
+
+DeliveryJob "1" o-- "many" Order: has
+DeliveryJob "1" *-- "1" Route: has
+
+Order "1" o-- "1" Business: contains
+Order "1" o-- "1" Consumer: contains
+
+Admin -up-|> User: is a
+
+Driver "1" *-right- "many" Notification: has
+Driver -left-|> User: is a
+Driver "1" o-- "many" DeliveryJob: has
+
+remove unlinked
+
+@enduml

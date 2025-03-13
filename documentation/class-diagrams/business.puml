@@ -1,0 +1,28 @@
+@startuml
+
+class Business {
+  {field} + UUID id
+  + String business_name
+  + String owner_first_name
+  + String owner_last_name
+  + String phone_number
+  + String email
+  + UUID location_id
+  + List<BillingDetail> billing_details
+  + UUID user_id
+  + List<UUID> notification_ids
+  + boolean active_status
+  + DateTime created_datetime
+  + DateTime updated_datetime
+
+  {mehtod} +get_business_name(): String
+  +get_owner_full_name(): String
+  +set_business_name(name: String): void
+  +add_billing_detail(detail: BillingDetail): void
+  +remove_billing_detail(detail: BillingDetail): void
+  +add_notification(notification: UUID): void
+  +get_notifications(): void
+  +get_active_status(): boolean
+}
+
+@enduml

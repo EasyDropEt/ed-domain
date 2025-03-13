@@ -8,10 +8,10 @@ from ed_domain_model.entities.driver_payment import DriverPayment
 from ed_domain_model.entities.location import Location
 from ed_domain_model.entities.notification import Notification
 from ed_domain_model.entities.order import Order
+from ed_domain_model.entities.otp import Otp
 from ed_domain_model.entities.route import Route
 from ed_domain_model.entities.user import User
 from ed_domain_model.entities.warehouse_worker import WarehouseWorker
-from src.ed_domain_model.entities.otp import Otp
 
 __all__ = [
     "Business",

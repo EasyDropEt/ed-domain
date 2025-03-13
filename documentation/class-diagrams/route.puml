@@ -1,0 +1,12 @@
+@startuml
+class Route {
+  {field} +List<WayPoint> waypoints
+  +float estimated_distance_in_kms
+  +int estimated_time_in_minutes
+
+  {method} +get_estimated_distance(): float
+  +set_estimated_distance(distance: float): void
+  +get_estimated_time(): int
+  +set_estimated_time(time: int): void
+}
+@enduml

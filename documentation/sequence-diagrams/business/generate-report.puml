@@ -1,0 +1,19 @@
+@startuml
+
+title "Business: Generate report"
+
+actor Business as B
+
+participant "Businesss Dashboard" as Dash
+participant Backend
+
+B -> Dash ++: Opens the business dashboard
+B <-- Dash: Shows home page
+B -> Dash: Navigate to reports page
+B <-- Dash: Shows reports page
+B -> Dash: Enter filters for report
+Dash -> Backend ++: Get: Get reports for business
+Dash <-- Backend --: 200 OK
+B <-- Dash --: Shows reports
+
+@enduml

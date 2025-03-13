@@ -1,0 +1,14 @@
+@startuml
+class OTP {
+  {field} +UUID id
+  +UUID user_id
+  +String value
+  +OtpVerificationAction action
+  +datetime create_datetime
+  +datetime expiry_datetime
+
+  {method} +get_value(): String
+  +set_value(value: String): void
+  +is_expired(): boolean
+}
+@enduml

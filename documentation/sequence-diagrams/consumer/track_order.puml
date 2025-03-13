@@ -7,12 +7,16 @@ actor Consumer as C
 participant "Consumers's Mobile App" as App
 participant "Backend Service" as Backend
 
-C -> App: Opens the consumer's mobile app
-App -> C: Shows the track order screen
+C -> App ++: Opens the consumer's mobile app
+C <-- App: Shows the track order screen
 C -> App: Enters the order tracking number
-App -> Backend: Sends order tracking number
-Backend -> Backend: Validates the order tracking number
-Backend -> App: Sends the order details
-App -> C: Shows the order details
+App -> Backend ++: Get: Order by tracking number
+group If order exists
+  App <-- Backend: 200 OK
+  C <-- App: Shows order details
+else else
+  App <-- Backend --: 400 Bad request 
+  C <-- App: Shows errors
+end
 
 @enduml

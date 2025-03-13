@@ -1,0 +1,91 @@
+@startuml
+
+' UI Components
+component "<<UI>>\nDriver's Mobile\nApplication" as D
+component "<<UI>>\nBusiness Dashboard" as Dash
+component "<<UI>>\nConsumer's Mobile\nApplication" as C
+
+' Databases
+database "Auth\nDatabase" as AuthDb
+database "Core\nDatabase" as CoreDb
+database "Notification\nDatabase" as NotificationDb
+
+' Backend Components
+interface "HTTP" as GatewayHttp
+component "API Gateway" as Gateway {
+  component "Presentation" as GatewayPresentation
+  component "Appliction" as GatewayApplication
+  component "Infrastructure" as GatewayInfrastructure
+
+  GatewayHttp -- GatewayPresentation
+  GatewayPresentation -> GatewayApplication
+  GatewayApplication -> GatewayInfrastructure
+}
+
+interface "HTTP" as CoreHttp
+interface "Message Queue" as CoreMQ
+component "Core Service" as Core {
+  component "Presentation" as CorePresentation
+  component "Appliction" as CoreApplication
+  component "Infrastructure" as CoreInfrastructure
+
+  CoreHttp -- CorePresentation
+  CoreMQ -- CoreInfrastructure
+  CorePresentation -> CoreApplication
+  CoreApplication -> CoreInfrastructure
+}
+
+interface "HTTP" as NotificationHttp
+interface "Message Queue" as NotificationMQ
+component "Notification Service" as Notification {
+  component "Presentation" as NotificationPresentation
+  component "Appliction" as NotificationApplication
+  component "Infrastructure" as NotificationInfrastructure
+
+  NotificationHttp -- NotificationPresentation
+  NotificationMQ - NotificationInfrastructure
+  NotificationPresentation -> NotificationApplication
+  NotificationApplication -> NotificationInfrastructure
+}
+
+interface "HTTP" as AuthHttp
+component "Auth Service" as Auth {
+  component "Presentation" as AuthPresentation
+  component "Appliction" as AuthApplication
+  component "Infrastructure" as AuthInfrastructure
+
+  AuthHttp -- AuthPresentation
+  AuthPresentation -> AuthApplication
+  AuthApplication -> AuthInfrastructure
+}
+
+interface "Message Queue" as OptimizationMQ
+component "Optimization Service" as Optimization {
+  component "Presentation" as OptimizationPresentation
+  component "Application" as OptimizationApplication
+  component "Infrastructure" as OptimizationInfrastructure
+
+  OptimizationMQ <-- OptimizationInfrastructure
+  OptimizationPresentation -> OptimizationApplication
+  OptimizationApplication -> OptimizationInfrastructure
+}
+
+' Relationships
+D --> GatewayHttp
+Dash --> GatewayHttp
+C --> GatewayHttp
+
+GatewayInfrastructure -> CoreHttp
+GatewayInfrastructure -> AuthHttp
+
+CoreInfrastructure -> NotificationMQ
+CoreInfrastructure -> AuthHttp
+CoreInfrastructure -> OptimizationMQ
+CoreInfrastructure --> CoreDb
+
+AuthInfrastructure -> NotificationHttp
+AuthInfrastructure --> AuthDb
+
+NotificationInfrastructure --> NotificationDb
+
+@enduml

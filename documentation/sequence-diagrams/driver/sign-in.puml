@@ -10,8 +10,7 @@ participant Backend
 D -> App ++: Opens the driver's mobile app
 D <-- App: Shows the sign in screen
 D -> App: Enters their email/phone number and password
-App -> Backend ++: Post: Sends sign in request
-Backend -> Backend: Validates driver's credentials
+App -> Backend ++: Post: Sign-in a driver
 group If driver details are valid
   App <-- Backend: 200 OK
   D <- Backend: Sends a one-time password
@@ -22,7 +21,6 @@ else else
 end
 D --> App: Enters the OTP
 App -> Backend: Post: Validate driver's OTP
-Backend -> Backend: Validates OTP
 group If OTP is valid
   App <-- Backend: 200 OK: Sends driver details and access token
   D <-- App: Shows home page

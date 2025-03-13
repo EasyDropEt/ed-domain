@@ -1,0 +1,19 @@
+@startuml
+class User {
+  {field} +UUID id
+  +String first_name
+  +String last_name
+  +String email
+  +String phone_number
+  +String password
+  +datetime create_datetime
+  +datetime update_datetime
+  +boolean verified
+
+  {method} +get_full_name(): String
+  +set_email(email: String): void
+  +verify(): void
+  +login(email: String, password: String): boolean
+  +logout(): void
+}
+@enduml

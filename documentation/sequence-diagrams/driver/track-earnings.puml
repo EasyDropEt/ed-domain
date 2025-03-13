@@ -1,0 +1,17 @@
+@startuml
+
+title "Driver: Track earnings"
+
+actor Driver as D
+participant "Drivers's Mobile App" as App
+
+participant Backend
+
+D -> App ++: Opens the driver's mobile app
+D <-- App: Shows current delivery job page
+D -> App: Navigates to earnings page
+App -> Backend ++: Get: driver's earnings
+App <-- Backend--: 200 OK
+D <-- App--: Shows earnings
+
+@enduml

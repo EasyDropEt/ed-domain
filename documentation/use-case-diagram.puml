@@ -1,0 +1,56 @@
+@startuml
+
+
+actor Driver
+actor Business
+actor Consumer
+actor Admin
+left to right direction
+
+
+rectangle "System" {
+  usecase "Receive Real-Time Delivery Requests" as UC01
+  usecase "Set Availability Status" as UC02
+  usecase "Receive Delivery Notification" as UC03
+  usecase "View Delivery Request Details" as UC04
+  usecase "View Optimized Delivery Route" as UC05
+  usecase "Use In-App Navigation" as UC06
+  usecase "View Estimated Delivery Time" as UC07
+  usecase "Update Delivery Status" as UC08
+  usecase "Cancel Delivery Request" as UC09
+  usecase "Contact Business or Customer" as UC10
+  usecase "Track Completed Deliveries" as UC11
+  usecase "View Earnings Summary" as UC12
+  usecase "Receive Real-Time Updates on Delivery Status" as UC13
+  usecase "Login" as UC14
+  usecase "Create Delivery" as UC15
+  usecase "Track Deliveries" as UC16
+  usecase "Approve/Reject Registrations" as UC17
+  usecase "View All Deliveries" as UC18
+  usecase "View Reasons for Delivery Cancellations" as UC19
+}
+
+Driver -- UC01
+Driver -- UC02
+Driver -- UC03
+Driver -- UC04
+Driver -- UC05
+Driver -- UC06
+Driver -- UC07
+Driver -- UC08
+Driver -- UC09
+Driver -- UC10
+Driver -- UC11
+Driver -- UC12
+Driver -- UC14
+Consumer -- UC13
+Consumer -- UC14
+Business -- UC14
+Business -- UC15
+Business -- UC16
+Business -- UC17
+Business -- UC18
+Admin -- UC14
+Admin -- UC19
+
+@enduml

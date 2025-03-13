@@ -1,0 +1,19 @@
+@startuml
+class Admin {
+  {field} +UUID id
+  +String first_name
+  +String last_name
+  +String phone_number
+  +String email
+  +UUID user_id
+  +List<UUID> notification_ids
+  +boolean active_status
+  +datetime created_datetime
+  +datetime updated_datetime
+
+  {method} +get_full_name(): String
+  +set_phone_number(phone: String): void
+  +add_notification(notification: UUID): void
+  +remove_notification(notification: UUID): void
+}
+@enduml

@@ -1,0 +1,73 @@
+@startuml
+
+' UI Components
+component "<<UI>>\nDriver's Mobile\nApplication" as D
+component "<<UI>>\nBusiness Dashboard" as Dash
+component "<<UI>>\nConsumer's Mobile\nApplication" as C
+
+' Databases
+database "Auth\nDatabase" as AuthDb
+database "Core\nDatabase" as CoreDb
+database "Notification\nDatabase" as NotificationDb
+
+' Backend Components
+component "API Gateway" as Gateway {
+  component "Business Module" as GatewayBusinessModule
+  component "Consumer Module" as GatewayConsumerModule
+  component "Driver Module" as GatewayDriverModule
+}
+
+component "Core Service" as Core {
+  ' Components
+  component "Business Module" as CoreBusinessModule
+  component "Consumer Module" as CoreConsumerModule
+  component "Driver Module" as CoreDriverModule
+  component "Order Module" as CoreOrderModule
+  component "Notification Module" as CoreNotificationModule
+  component "Database Client" as CoreDbClient
+
+  CoreBusinessModule --> CoreDbClient
+  CoreConsumerModule --> CoreDbClient
+  CoreDriverModule --> CoreDbClient
+  CoreOrderModule --> CoreDbClient
+}
+component "Notification Service" as Notification {
+  component "Main Module" as NotificationMainModule
+  component "Database Client" as NotificationDbClient
+
+  NotificationMainModule --> NotificationDbClient
+}
+
+component "Auth Service" as Auth {
+  component "Main Module" as AuthMainModule
+  component "Database Client" as AuthDbClient
+
+  AuthMainModule --> AuthDbClient
+}
+
+component "Optimization Service" as Optimization
+
+' Relationships
+D ..> GatewayDriverModule
+Dash ..> GatewayBusinessModule
+C ..> GatewayConsumerModule
+
+Gateway ..> Auth
+GatewayBusinessModule ..> CoreBusinessModule
+GatewayDriverModule ..> CoreDriverModule
+GatewayConsumerModule ..> CoreConsumerModule
+Gateway ..> Notification
+
+Core ..> Notification
+Core --> Optimization
+CoreDriverModule --> Auth
+CoreBusinessModule --> Auth
+CoreDbClient --> CoreDb
+CoreNotificationModule --> Notification
+
+Auth ..> Notification
+AuthDbClient --> AuthDb
+
+NotificationDbClient --> NotificationDb
+
+@enduml

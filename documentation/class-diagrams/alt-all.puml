@@ -1,0 +1,83 @@
+@startuml
+
+skinparam classBackgroundColor #F0F0F0
+skinparam classBorderColor #333333
+skinparam classFontColor #000000
+skinparam classArrowColor #333333
+
+' Users
+class User #FFD700
+class Admin #FFD700
+class Business #FFD700
+class Consumer #FFD700
+class Driver #FFD700
+
+' Business
+class Bill #87CEEB
+class BillingDetail #87CEEB
+class Notification #87CEEB
+class Location #87CEEB
+
+' Orders & Delivery
+class Order #98FB98
+class DeliveryJob #98FB98
+class Route #98FB98
+class WayPoint #98FB98
+
+' Payments
+class DriverPayment #FFA07A
+class PaymentMethod #FFA07A
+
+' Notifications
+class OTP #FFB6C1
+
+' Cars
+class Car #DDA0DD
+
+' Enums
+enum DeliveryJobStatus #C0C0C0
+enum NotificationType #C0C0C0
+enum OrderStatus #C0C0C0
+enum OTPVerificationAction #C0C0C0
+
+' Relationships (same as before)
+
+Business "1" *-- "many" Bill: has
+Business "1" *-- "many" BillingDetail: has
+Business "1" *-- "many" Notification: has
+Business --|> User: is a
+Business "1" o-- "1" Location: has
+
+Consumer "1" o-- "1" Location: has
+Consumer "1" *-- "many" Notification: has
+Consumer --|> User: is a
+
+DeliveryJob "1" o-- "many" Order: has
+DeliveryJob "1" *-- "1" Route: has
+DeliveryJob *-- DeliveryJobStatus: has
+DeliveryJob "1" *-- "1" DriverPayment: has
+
+DriverPayment o-- PaymentMethod: has
+DriverPayment *-- Status: has
+
+Notification --> NotificationType: has
+
+Order "1" o-- "1" Bill: has
+Order --> OrderStatus: has
+Order "1" o-- "1" Business: contains
+Order "1" o-- "1" Consumer: contains
+
+OTP "many" -left-o "1" User: has
+OTP *-- OTPVerificationAction: has
+
+Route "1" *-- "many" WayPoint: contains
+
+Admin -up-|> User: is a
+
+Driver "1" *-right- "1" Car: has
+Driver "1" o-- "1" Location: has
+Driver "1" o-- "many" DriverPayment: has
+Driver "1" *-- "many" Notification: has
+Driver -up-|> User: is a
+Driver "1" o-- "many" DeliveryJob: has
+@enduml
