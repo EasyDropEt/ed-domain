@@ -54,6 +54,7 @@ class AuthEndpoint(BaseEndpoint):
                 'name': 'delete_user',
                 'method': HttpMethod.DELETE,
                 'path': f"{self._base_url}/users/{{user_id}}",
+                'path_params': {'user_id': str},
             }
         ]
 
