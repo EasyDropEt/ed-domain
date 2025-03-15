@@ -13,6 +13,7 @@ class AuthEndpoint(BaseEndpoint):
     def __init__(self, base_url: str):
         self._base_url = base_url
         self._descriptions: list[EndpointDescription] = [
+            # Auth endpoints
             {
                 'name': 'create_get_otp',
                 'method': HttpMethod.POST,
@@ -47,6 +48,13 @@ class AuthEndpoint(BaseEndpoint):
                 'path': f"{self._base_url}/auth/token/verify",
                 'request_model': VerifyTokenDto,
                 'response_model': UserDto
+            },
+            # User endpoints
+            {
+                'name': 'delete_user',
+                'method': HttpMethod.DELETE,
+                'path': f"{self._base_url}/users/{{user_id}}",
+                'path_params': {'user_id': str},
             }
         ]
 

@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from typing import NotRequired, TypedDict
+from typing import Any, NotRequired, TypedDict
 
 from ed_domain_model.services.common.http_methods import HttpMethod
 
@@ -19,7 +19,7 @@ class EndpointCallParams(TypedDict):
     headers: NotRequired[dict]
     query_params: NotRequired[dict]
     path_params: NotRequired[dict]
-    request: NotRequired[dict]
+    request: NotRequired[Any]
 
 
 class BaseEndpoint(metaclass=ABCMeta):
