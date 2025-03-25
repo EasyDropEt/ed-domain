@@ -4,18 +4,18 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="ed_domain_model",
+    name="ed.domain",
     author="Fikernew Birhanu",
     author_email="fikernew.birhanu.waju@gmail.com",
     description="EasyDrop domain model Package",
-    keywords="ed_domain_model, pypi, package",
+    keywords="ed.domain, pypi, package",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ffekirnew/rmediator",
     project_urls={
-        "Documentation": "https://github.com/easydropet/domain-model",
-        "Bug Reports": "https://github.com/easydropet/domain-model/issues",
-        "Source Code": "https://github.com/easydropet/domain-model",
+        "Documentation": "https://github.com/easydropet/ed-domain",
+        "Bug Reports": "https://github.com/easydropet/ed-domain/issues",
+        "Source Code": "https://github.com/easydropet/ed-domain",
         # 'Funding': '',
         # 'Say Thanks!': '',
     },
@@ -32,7 +32,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.12",
     # install_requires=['Pillow'],
     extras_require={
         "dev": ["check-manifest"],
