@@ -4,11 +4,11 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="ed.domain",
+    name="ed_domain",
     author="Fikernew Birhanu",
     author_email="fikernew.birhanu.waju@gmail.com",
     description="EasyDrop domain model Package",
-    keywords="ed.domain, pypi, package",
+    keywords="ed_domain, pypi, package",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ffekirnew/rmediator",

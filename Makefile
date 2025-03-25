@@ -26,7 +26,7 @@ upload: build
 	@twine upload dist/*
 	@rm -rf dist
 	@rm -rf build
-	@rm -rf *.egg-info
+	@rm -rf src/*.egg-info
 	@rm -rf .pytest_cache
 	@rm -rf .coverage
 	@rm -rf .eggs
