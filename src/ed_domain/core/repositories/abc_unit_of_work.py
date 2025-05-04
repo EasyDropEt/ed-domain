@@ -12,6 +12,8 @@ from ed_domain.core.repositories.abc_driver_repository import \
     ABCDriverRepository
 from ed_domain.core.repositories.abc_location_repository import \
     ABCLocationRepository
+from ed_domain.core.repositories.abc_notification_repository import \
+    ABCNotificationRepository
 from ed_domain.core.repositories.abc_order_repository import ABCOrderRepository
 from ed_domain.core.repositories.abc_otp_repository import ABCOtpRepository
 from ed_domain.core.repositories.abc_route_repository import ABCRouteRepository
@@ -46,6 +48,10 @@ class ABCUnitOfWork(metaclass=ABCMeta):
     @property
     @abstractmethod
     def location_repository(self) -> ABCLocationRepository: ...
+
+    @property
+    @abstractmethod
+    def notification_repository(self) -> ABCNotificationRepository: ...
 
     @property
     @abstractmethod
