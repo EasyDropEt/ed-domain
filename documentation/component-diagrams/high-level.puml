@@ -2,6 +2,7 @@
 
 ' Packages
 package "Domain Model" as Domain
+package "Infrastructure Model" as Infrastructure
 
 ' Components
 component "<<UI>>\nDriver's Mobile\nApplication" as D
@@ -35,7 +36,9 @@ NotificationMQ -- Notification
 
 ' Auth interfaces
 interface "HTTP" as AuthHttp
+interface "Message Queue" as AuthMQ
 AuthHttp -left- Auth
+AuthMQ -left- Auth
 
 ' Optimization interfaces'
 interface "Message Queue" as OptimizationMQ
@@ -51,17 +54,22 @@ Gateway -- CoreHttp
 
 Core -- NotificationMQ
 Core -- OptimizationMQ
+Core -- AuthMQ
 Core -left- AuthHttp
 Core -right- CoreDb
 Core ..> Domain
+Core ..> Infrastructure
 
 Auth -- NotificationHttp
 Auth -left- AuthDb
 Auth ..> Domain
+Auth ..> Infrastructure
 
 Notification -- NotificationDb
 Notification ..> Domain
+Notification ..> Infrastructure
 
 Optimization ..> Domain
+Optimization ..> Infrastructure
 
 @enduml
