@@ -8,6 +8,6 @@ class AuthUser(BaseEntity):
     last_name: str
     email: NotRequired[str]
     phone_number: NotRequired[str]
-    password: str
+    password_hash: str  # Stores the hashed password, not plain text
     verified: bool
     logged_in: bool
