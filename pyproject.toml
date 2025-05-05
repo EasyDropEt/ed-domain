@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ed-domain"
-version = "0.2.12"
+version = "0.2.13"
 description = ""
 authors = ["ffekirnew <ffekirnew0808@gmail.com>"]
 readme = "README.md"
