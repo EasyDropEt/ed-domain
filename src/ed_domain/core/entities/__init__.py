@@ -1,3 +1,4 @@
+from ed_domain.core.entities.auth_user import AuthUser
 from ed_domain.core.entities.bill import Bill
 from ed_domain.core.entities.business import Business
 from ed_domain.core.entities.car import Car
@@ -10,10 +11,10 @@ from ed_domain.core.entities.notification import Notification
 from ed_domain.core.entities.order import Order
 from ed_domain.core.entities.otp import Otp
 from ed_domain.core.entities.route import Route
-from ed_domain.core.entities.user import User
 from ed_domain.core.entities.warehouse_worker import WarehouseWorker
 
 __all__ = [
+    "AuthUser",
     "Business",
     "Car",
     "Bill",
@@ -26,6 +27,5 @@ __all__ = [
     "Order",
     "Otp",
     "Route",
-    "User",
     "WarehouseWorker",
 ]
