@@ -13,3 +13,4 @@ class OrderModel(TypedDict):
     business: BusinessModel
     latest_time_of_delivery: datetime
     parcel: Parcel
+    create_datetime: datetime
