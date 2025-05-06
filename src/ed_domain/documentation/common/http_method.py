@@ -6,3 +6,4 @@ class HttpMethod(StrEnum):
     POST = "POST"
     PUT = "PUT"
     DELETE = "DELETE"
+    PATCH = "PATCH"

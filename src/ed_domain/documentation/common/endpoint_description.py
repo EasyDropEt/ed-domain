@@ -1,6 +1,6 @@
 from typing import NotRequired, TypedDict
 
-from ed_domain.services.common.http_method import HttpMethod
+from ed_domain.documentation.common.http_method import HttpMethod
 
 
 class EndpointDescription(TypedDict):
