@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
-from ed_domain.services.common.endpoint_description import EndpointDescription
+from ed_domain.documentation.common.endpoint_description import \
+    EndpointDescription
 
 
 class BaseEndpoint(metaclass=ABCMeta):

@@ -1,5 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
+from ed_domain.core.repositories.abc_auth_user_repository import \
+    ABCAuthUserRepository
 from ed_domain.core.repositories.abc_bill_repository import ABCBillRepository
 from ed_domain.core.repositories.abc_business_repository import \
     ABCBusinessRepository
@@ -17,7 +19,6 @@ from ed_domain.core.repositories.abc_notification_repository import \
 from ed_domain.core.repositories.abc_order_repository import ABCOrderRepository
 from ed_domain.core.repositories.abc_otp_repository import ABCOtpRepository
 from ed_domain.core.repositories.abc_route_repository import ABCRouteRepository
-from ed_domain.core.repositories.abc_user_repository import ABCUserRepository
 
 
 class ABCUnitOfWork(metaclass=ABCMeta):
@@ -67,4 +68,4 @@ class ABCUnitOfWork(metaclass=ABCMeta):
 
     @property
     @abstractmethod
-    def user_repository(self) -> ABCUserRepository: ...
+    def auth_user_repository(self) -> ABCAuthUserRepository: ...
