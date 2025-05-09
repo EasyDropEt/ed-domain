@@ -14,3 +14,4 @@ class Driver(BaseUser):
     car_id: UUID
     delivery_job_ids: list[UUID]
     payment_ids: list[UUID]
+    current_location_id: UUID
