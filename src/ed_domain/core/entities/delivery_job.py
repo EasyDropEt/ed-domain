@@ -6,16 +6,23 @@ from uuid import UUID
 from ed_domain.core.entities.base_entity import BaseEntity
 
 
+class WaypointStatus(StrEnum):
+    PENDING = "pending"
+    IN_PROGRESS = "in_progress"
+    DONE = "done"
+
+
 class WayPointType(StrEnum):
-    PICKUP = "PICKUP"
-    DROP_OFF = "DROP_OFF"
+    PICK_UP = "pick_up"
+    DROP_OFF = "drop_off"
 
 
 class WayPoint(TypedDict):
     order_id: UUID
-    type: WayPointType
     eta: datetime
     sequence: int
+    type: WayPointType
+    waypoint_status: WaypointStatus
 
 
 class DeliveryJobStatus(StrEnum):
@@ -28,10 +35,10 @@ class DeliveryJobStatus(StrEnum):
 
 class DeliveryJob(BaseEntity):
     waypoints: list[WayPoint]
-    status: DeliveryJobStatus
     estimated_payment: float
     estimated_completion_time: datetime
     estimated_distance_in_kms: float
     estimated_time_in_minutes: int
+    status: DeliveryJobStatus
     driver_id: NotRequired[UUID]
     driver_payment_id: NotRequired[UUID]
