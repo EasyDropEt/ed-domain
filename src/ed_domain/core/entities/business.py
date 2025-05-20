@@ -10,4 +10,3 @@ class Business(BaseUser):
     phone_number: str
     email: str
     location_id: UUID
-    bill_ids: list[UUID]

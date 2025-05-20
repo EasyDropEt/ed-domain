@@ -4,6 +4,7 @@ from typing import NotRequired, TypedDict
 from uuid import UUID
 
 from ed_domain.core.entities.base_entity import BaseEntity
+from ed_domain.core.value_objects.money import Money
 
 
 class WaypointStatus(StrEnum):
@@ -35,10 +36,9 @@ class DeliveryJobStatus(StrEnum):
 
 class DeliveryJob(BaseEntity):
     waypoints: list[WayPoint]
-    estimated_payment: float
+    estimated_payment: Money
     estimated_completion_time: datetime
     estimated_distance_in_kms: float
     estimated_time_in_minutes: int
     status: DeliveryJobStatus
     driver_id: NotRequired[UUID]
-    driver_payment_id: NotRequired[UUID]
