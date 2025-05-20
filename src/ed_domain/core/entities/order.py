@@ -37,7 +37,7 @@ class Order(BaseEntity):
     consumer_id: UUID
     business_id: UUID
     bill_id: UUID
+    driver_id: NotRequired[UUID]
     latest_time_of_delivery: datetime
     parcel: Parcel
     order_status: OrderStatus
-    delivery_job_id: NotRequired[UUID]
