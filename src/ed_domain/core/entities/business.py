@@ -1,11 +1,6 @@
-from typing import TypedDict
 from uuid import UUID
 
 from ed_domain.core.entities.base_user import BaseUser
-
-
-class BillingDetail(TypedDict):
-    ...
 
 
 class Business(BaseUser):
@@ -15,5 +10,4 @@ class Business(BaseUser):
     phone_number: str
     email: str
     location_id: UUID
-    billing_details: list[BillingDetail]
-    bills: list[UUID]
+    bill_ids: list[UUID]
