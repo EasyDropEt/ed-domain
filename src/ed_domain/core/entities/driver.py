@@ -12,6 +12,4 @@ class Driver(BaseUser):
     email: NotRequired[str]
     location_id: UUID
     car_id: UUID
-    delivery_job_ids: list[UUID]
-    bill_ids: list[UUID]
     current_location_id: UUID
