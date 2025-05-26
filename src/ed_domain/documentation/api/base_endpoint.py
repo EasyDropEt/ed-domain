@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from ed_domain.documentation.common.endpoint_description import \
+from ed_domain.documentation.api.definitions.endpoint_description import \
     EndpointDescription
 
 
