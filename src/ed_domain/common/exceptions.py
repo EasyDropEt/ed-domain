@@ -35,6 +35,10 @@ ERROR_CODES: dict[Exceptions, int] = {
     Exceptions.RequestTimeoutException: 408,
 }
 
+EXCEPTION_NAMES: dict[int, Exceptions] = {
+    value: key for key, value in ERROR_CODES.items()
+}
+
 
 class ApplicationException(Exception):
     def __init__(
