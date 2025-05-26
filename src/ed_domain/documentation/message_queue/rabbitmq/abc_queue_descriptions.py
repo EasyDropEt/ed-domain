@@ -4,14 +4,14 @@ from ed_domain.documentation.message_queue.rabbitmq.definitions.queue_descriptio
     QueueDescription
 
 
-class BaseRabbitmqSubscriber(metaclass=ABCMeta):
+class ABCQueueDescriptions(metaclass=ABCMeta):
     @property
     @abstractmethod
     def descriptions(self) -> list[QueueDescription]: ...
 
-    def get_queue(self, queue: str) -> QueueDescription:
+    def get_queue(self, name: str) -> QueueDescription:
         for description in self.descriptions:
-            if description["queue"] == queue:
+            if description["name"] == name:
                 return description
 
-        raise ValueError(f"Queue description not found for {queue}")
+        raise ValueError(f"Queue description not found for {name}")

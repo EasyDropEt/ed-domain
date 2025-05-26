@@ -4,11 +4,11 @@ from typing import Generic, TypeVar
 from ed_domain.documentation.api.definitions import (ApiResponse,
                                                      EndpointCallParams)
 
-ResponseType = TypeVar("ResponseType")
+TResponseType = TypeVar("TResponseType")
 
 
-class ABCApiClient(Generic[ResponseType], metaclass=ABCMeta):
+class ABCEndpointClient(Generic[TResponseType], metaclass=ABCMeta):
     @abstractmethod
     def __call__(
         self, call_params: EndpointCallParams
-    ) -> ApiResponse[ResponseType]: ...
+    ) -> ApiResponse[TResponseType]: ...

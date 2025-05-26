@@ -4,7 +4,7 @@ from ed_domain.documentation.api.definitions.endpoint_description import \
     EndpointDescription
 
 
-class BaseEndpoint(metaclass=ABCMeta):
+class ABCEndpointDescriptions(metaclass=ABCMeta):
     @property
     @abstractmethod
     def descriptions(self) -> list[EndpointDescription]: ...
