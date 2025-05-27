@@ -1,8 +1,13 @@
 from typing import NotRequired, TypedDict
 
 
+class ConnectionParameters(TypedDict):
+    url: str
+    queue: str
+
+
 class QueueDescription(TypedDict):
-    connection_url: str
     name: str
+    connection_parameters: ConnectionParameters
     durable: bool
     request_model: NotRequired[type]
