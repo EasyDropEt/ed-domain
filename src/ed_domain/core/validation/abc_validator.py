@@ -9,13 +9,9 @@ T = TypeVar("T")
 class ABCValidator(Generic[T], ABC):
     DEFAULT_ERROR_LOCATION: str = "body"
 
-    def __init__(
-        self,
-        value: T | list[T],
-    ):
+    def __init__(self):
         self._is_valid: bool = False
         self._errors: list[ValidationError] = []
-        self._value: T | list[T] = value
 
     @property
     def is_valid(self) -> bool:
@@ -25,9 +21,8 @@ class ABCValidator(Generic[T], ABC):
     def errors(self) -> Optional[list[ValidationError]]:
         return self._errors
 
-    @property
-    def input(self) -> T | list[T]:
-        return self._value
-
     @abstractmethod
-    def validate(self) -> None: ...
+    def validate(
+        self,
+        value: T | list[T],
+    ) -> None: ...

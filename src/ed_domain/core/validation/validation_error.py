@@ -7,3 +7,4 @@ class ValidationError(TypedDict):
     type: ValidationErrorType
     location: str
     message: str
+    input: str
