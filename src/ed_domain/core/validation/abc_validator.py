@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import Generic, Optional, TypeVar
+from typing import Generic, TypeVar
 
-from ed_domain.core.validation.validation_error import ValidationError
+from ed_domain.core.validation.validation_response import ValidationResponse
 
 T = TypeVar("T")
 
@@ -9,29 +9,27 @@ T = TypeVar("T")
 class ABCValidator(Generic[T], ABC):
     DEFAULT_ERROR_LOCATION: str = "body"
 
-    def __init__(self, location: str = DEFAULT_ERROR_LOCATION):
-        self._is_valid: bool = False
-        self._errors: list[ValidationError] = []
-        self._location: str = location
-
-    @property
-    def is_valid(self) -> bool:
-        return self._is_valid
-
-    @property
-    def errors(self) -> Optional[list[ValidationError]]:
-        return self._errors
-
     def validate_many(
         self,
         values: list[T],
-    ) -> None:
+        location: str = DEFAULT_ERROR_LOCATION,
+    ) -> ValidationResponse:
+        list_validation_response: ValidationResponse = ValidationResponse([])
+
         for index, value in enumerate(values):
-            self.validate(value, f"{self._location}:{index + 1}")
+            validation_response = self.validate(
+                value, f"{location}[{index + 1}]")
+
+            if validation_response.is_valid:
+                continue
+
+            list_validation_response.errors.extend(validation_response.errors)
+
+        return list_validation_response
 
     @abstractmethod
     def validate(
         self,
         value: T,
-        location: Optional[str] = None,
-    ) -> None: ...
+        location: str = DEFAULT_ERROR_LOCATION,
+    ) -> ValidationResponse: ...
