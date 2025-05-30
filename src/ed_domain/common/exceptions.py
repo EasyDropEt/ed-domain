@@ -1,4 +1,5 @@
 from enum import StrEnum
+from typing import Any
 
 
 class Exceptions(StrEnum):
@@ -41,9 +42,7 @@ EXCEPTION_NAMES: dict[int, Exceptions] = {
 
 
 class ApplicationException(Exception):
-    def __init__(
-        self, exception_type: Exceptions, message: str, errors: list[str]
-    ) -> None:
+    def __init__(self, exception_type: Exceptions, message: str, errors: Any) -> None:
         self._message = message
         self._errors = errors
         self._error_code = ERROR_CODES[exception_type]
@@ -54,7 +53,7 @@ class ApplicationException(Exception):
         return self._message
 
     @property
-    def errors(self) -> list[str]:
+    def errors(self) -> Any:
         return self._errors
 
     @property
