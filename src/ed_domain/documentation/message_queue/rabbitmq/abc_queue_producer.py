@@ -1,10 +1,10 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 
 TMessage = TypeVar("TMessage")
 
 
-class ABCQueueProducer(Generic[TMessage], metaclass=ABCMeta):
+class ABCQueueProducer(Generic[TMessage], ABC):
     @abstractmethod
     async def start(self) -> None: ...
 
