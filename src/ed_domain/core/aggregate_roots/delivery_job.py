@@ -21,7 +21,7 @@ class DeliveryJobStatus(StrEnum):
 @dataclass
 class DeliveryJob(BaseAggregateRoot):
     waypoints: list[WayPoint]
-    estimated_payment: Money
+    estimated_payment_in_birr: float
     estimated_completion_time: datetime
     estimated_distance_in_kms: float
     estimated_time_in_minutes: int

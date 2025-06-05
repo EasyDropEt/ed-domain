@@ -13,8 +13,8 @@ class ParcelSize(StrEnum):
 @dataclass
 class Parcel(BaseEntity):
     size: ParcelSize
-    length: int
-    width: int
+    length: float
+    width: float
     height: float
     weight: float
     fragile: bool

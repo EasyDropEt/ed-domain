@@ -15,7 +15,7 @@ class BillStatus(StrEnum):
 
 @dataclass
 class Bill(BaseEntity):
-    amount: Money
+    amount_in_birr: float
     bill_status: BillStatus
     due_date: datetime
 
@@ -29,7 +29,7 @@ class Bill(BaseEntity):
         base_dict = super().to_dict()
         return {
             **base_dict,
-            "amount": self.amount.to_dict(),
+            "amount": self.amount_in_birr,
             "bill_status": self.bill_status.value,
             "due_date": self.due_date.isoformat(),
         }
@@ -39,7 +39,7 @@ class Bill(BaseEntity):
         base_entity = BaseEntity.from_dict(dict_value)
         return cls(
             **vars(base_entity),
-            amount=Money.from_dict(dict_value["amount"]),
+            amount_in_birr=dict_value["amount"],
             bill_status=BillStatus(dict_value["bill_status"]),
             due_date=datetime.fromisoformat(dict_value["due_date"]),
         )

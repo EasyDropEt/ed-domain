@@ -5,7 +5,7 @@ from uuid import UUID
 from ed_domain.core.entities.base_entity import BaseEntity
 
 
-class OtpVerificationAction(StrEnum):
+class OtpType(StrEnum):
     VERIFY_EMAIL = "VERIFY_EMAIL"
     VERIFY_PHONE_NUMBER = "VERIFY_PHONE_NUMBER"
     LOGIN = "LOGIN"
@@ -16,5 +16,5 @@ class OtpVerificationAction(StrEnum):
 class Otp(BaseEntity):
     user_id: UUID
     value: str
-    action: OtpVerificationAction
+    otp_type: OtpType
     expiry_datetime: datetime
