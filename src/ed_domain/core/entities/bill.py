@@ -2,10 +2,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
 
-from ed_domain.core.aggregate_roots.base_aggregate_root import \
-    BaseAggregateRoot
-from ed_domain.core.value_objects.money import Money
 from ed_domain.core.entities.base_entity import BaseEntity
+from ed_domain.core.value_objects.money import Money
 
 
 class BillStatus(StrEnum):
@@ -38,7 +36,7 @@ class Bill(BaseEntity):
 
     @classmethod
     def from_dict(cls, dict_value: dict) -> "Bill":
-        base_entity = BaseAggregateRoot.from_dict(dict_value)
+        base_entity = BaseEntity.from_dict(dict_value)
         return cls(
             **vars(base_entity),
             amount=Money.from_dict(dict_value["amount"]),

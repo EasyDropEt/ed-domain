@@ -1,4 +1,3 @@
-from abc import abstractmethod
 from dataclasses import dataclass
 from uuid import UUID
 
@@ -7,13 +6,11 @@ from uuid import UUID
 class BaseDomainObject:
     id: UUID
 
-    @abstractmethod
     def to_dict(self) -> dict:
         return {
             "id": str(self.id),
         }
 
-    @abstractmethod
     @classmethod
     def from_dict(cls, dict_value: dict) -> "BaseDomainObject":
         return cls(

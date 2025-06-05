@@ -15,6 +15,9 @@ class AuthUser(BaseAggregateRoot):
     email: Optional[str] = None
     phone_number: Optional[str] = None
 
+    def verify(self) -> None:
+        self.verified = True
+
     def log_out(self) -> None:
         self.logged_in = False
 
