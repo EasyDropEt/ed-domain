@@ -9,7 +9,7 @@ class BaseEntity(BaseDomainObject):
     create_datetime: datetime
     update_datetime: datetime
     deleted: bool
-    deleted_datetime: datetime | None = None
+    deleted_datetime: datetime | None
 
     def to_dict(self) -> dict:
         base_dict = super().to_dict()

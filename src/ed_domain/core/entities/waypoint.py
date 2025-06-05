@@ -12,17 +12,17 @@ class WaypointStatus(StrEnum):
     DONE = "done"
 
 
-class WayPointType(StrEnum):
+class WaypointType(StrEnum):
     PICK_UP = "pick_up"
     DROP_OFF = "drop_off"
 
 
 @dataclass
-class WayPoint(BaseEntity):
+class Waypoint(BaseEntity):
     order_id: UUID
     eta: datetime
     sequence: int
-    type: WayPointType
+    type: WaypointType
     waypoint_status: WaypointStatus
 
     def to_dict(self) -> dict:
@@ -37,13 +37,13 @@ class WayPoint(BaseEntity):
         }
 
     @classmethod
-    def from_dict(cls, dict_value: dict) -> "WayPoint":
+    def from_dict(cls, dict_value: dict) -> "Waypoint":
         base_entity = BaseEntity.from_dict(dict_value)
         return cls(
             **vars(base_entity),
             order_id=UUID(dict_value["order_id"]),
             eta=datetime.fromisoformat(dict_value["eta"]),
             sequence=dict_value["sequence"],
-            type=WayPointType(dict_value["type"]),
+            type=WaypointType(dict_value["type"]),
             waypoint_status=WaypointStatus(dict_value["waypoint_status"]),
         )
