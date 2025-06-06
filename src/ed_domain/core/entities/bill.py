@@ -24,22 +24,3 @@ class Bill(BaseEntity):
             raise ValueError(f"Invalid bill status: {new_status}")
 
         self.bill_status = new_status
-
-    def to_dict(self) -> dict:
-        base_dict = super().to_dict()
-        return {
-            **base_dict,
-            "amount": self.amount_in_birr,
-            "bill_status": self.bill_status.value,
-            "due_date": self.due_date.isoformat(),
-        }
-
-    @classmethod
-    def from_dict(cls, dict_value: dict) -> "Bill":
-        base_entity = BaseEntity.from_dict(dict_value)
-        return cls(
-            **vars(base_entity),
-            amount_in_birr=dict_value["amount"],
-            bill_status=BillStatus(dict_value["bill_status"]),
-            due_date=datetime.fromisoformat(dict_value["due_date"]),
-        )

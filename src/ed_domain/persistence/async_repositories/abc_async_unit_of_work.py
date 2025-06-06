@@ -22,6 +22,8 @@ from ed_domain.persistence.async_repositories.abc_async_order_repository import 
     ABCAsyncOrderRepository
 from ed_domain.persistence.async_repositories.abc_async_otp_repository import \
     ABCAsyncOtpRepository
+from ed_domain.persistence.async_repositories.abc_async_waypoint_repository import \
+    ABCAsyncWaypointRepository
 
 
 class ABCAsyncUnitOfWork(metaclass=ABCMeta):
@@ -68,3 +70,7 @@ class ABCAsyncUnitOfWork(metaclass=ABCMeta):
     @property
     @abstractmethod
     def auth_user_repository(self) -> ABCAsyncAuthUserRepository: ...
+
+    @property
+    @abstractmethod
+    def waypoint_repository(self) -> ABCAsyncWaypointRepository: ...
