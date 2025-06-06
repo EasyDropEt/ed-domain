@@ -1,4 +1,6 @@
 from abc import ABCMeta, abstractmethod
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 from ed_domain.persistence.async_repositories.abc_async_auth_user_repository import \
     ABCAsyncAuthUserRepository
@@ -27,6 +29,11 @@ from ed_domain.persistence.async_repositories.abc_async_waypoint_repository impo
 
 
 class ABCAsyncUnitOfWork(metaclass=ABCMeta):
+    @abstractmethod
+    @asynccontextmanager
+    async def transaction(self) -> AsyncGenerator[None, None]:
+        yield
+
     @property
     @abstractmethod
     def bill_repository(self) -> ABCAsyncBillRepository: ...
