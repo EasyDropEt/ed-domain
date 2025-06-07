@@ -21,7 +21,7 @@ class WaypointType(StrEnum):
 
 @dataclass
 class Waypoint(BaseAggregateRoot):
-    order_id: Order
+    order: Order
     expected_arrival_time: datetime
     actual_arrival_time: datetime
     sequence: int

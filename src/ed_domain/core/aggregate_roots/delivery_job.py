@@ -26,7 +26,7 @@ class DeliveryJob(BaseAggregateRoot):
     estimated_distance_in_kms: float
     estimated_time_in_minutes: int
     status: DeliveryJobStatus
-    driver: Optional[UUID] = None
+    driver_id: Optional[UUID] = None
 
     def add_waypoint(self, waypoint: Waypoint) -> None:
         self.waypoints.append(waypoint)
