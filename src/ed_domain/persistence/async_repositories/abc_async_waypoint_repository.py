@@ -1,8 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from uuid import UUID
 
-from ed_domain.core.entities import Waypoint
-from ed_domain.core.entities.waypoint import WaypointStatus
+from ed_domain.core.aggregate_roots import Waypoint
+from ed_domain.core.aggregate_roots.waypoint import WaypointStatus
 from ed_domain.persistence.async_repositories.abc_async_generic_repository import \
     ABCAsyncGenericRepository
 
