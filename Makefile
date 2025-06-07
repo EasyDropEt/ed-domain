@@ -4,6 +4,11 @@ run:
 	@echo "Make: Running the package..."
 	@python src/server.py
 
+lint:
+	@echo "Make: Running lint"
+	@ruff check ./src/ed_domain
+	@mypy ./src/ed_domain
+
 docker.build:
 	@echo "Make: Building a docker image... (Might be minutes)"
 	@docker build -t domain_model:dev .
