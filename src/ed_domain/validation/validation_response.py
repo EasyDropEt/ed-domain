@@ -1,4 +1,4 @@
-from ed_domain.core.validation.validation_error import ValidationError
+from ed_domain.validation.validation_error import ValidationError
 
 
 class ValidationResponse:

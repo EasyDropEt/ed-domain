@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 
-from ed_domain.core.validation.validation_response import ValidationResponse
+from ed_domain.validation.validation_response import ValidationResponse
 
 T = TypeVar("T")
 

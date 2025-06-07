@@ -1,6 +1,6 @@
 from typing import TypedDict
 
-from ed_domain.core.validation.validation_error_type import ValidationErrorType
+from ed_domain.validation.validation_error_type import ValidationErrorType
 
 
 class ValidationError(TypedDict):
