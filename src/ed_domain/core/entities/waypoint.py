@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
-from uuid import UUID
 
+from ed_domain.core.aggregate_roots.order import Order
 from ed_domain.core.entities.base_entity import BaseEntity
 
 
@@ -19,7 +19,7 @@ class WaypointType(StrEnum):
 
 @dataclass
 class Waypoint(BaseEntity):
-    order_id: UUID
+    order: Order
     eta: datetime
     sequence: int
     waypoint_type: WaypointType
