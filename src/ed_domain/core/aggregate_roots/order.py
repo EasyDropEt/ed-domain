@@ -6,6 +6,8 @@ from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
+from ed_domain.core.aggregate_roots.business import Business
+from ed_domain.core.aggregate_roots.consumer import Consumer
 from ed_domain.core.aggregate_roots.driver import Driver
 from ed_domain.core.entities.bill import Bill, BillStatus
 from ed_domain.core.entities.parcel import Parcel
@@ -22,8 +24,8 @@ class OrderStatus(StrEnum):
 
 @dataclass
 class Order(BaseAggregateRoot):
-    consumer_id: UUID
-    business_id: UUID
+    consumer: Consumer
+    business: Business
     latest_time_of_delivery: datetime
     bill: Bill
     parcel: Parcel
