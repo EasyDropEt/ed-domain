@@ -3,6 +3,7 @@ from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
+from ed_domain.core.entities.location import Location
 
 
 @dataclass
@@ -13,7 +14,7 @@ class Business(BaseAggregateRoot):
     owner_last_name: str
     phone_number: str
     email: str
-    location_id: UUID
+    location: Location
 
     def update_business_name(self, new_name: str) -> None:
         self.business_name = new_name
