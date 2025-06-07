@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
-from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
+from ed_domain.core.aggregate_roots.order import Order
 
 
 class WaypointStatus(StrEnum):
@@ -21,7 +21,7 @@ class WaypointType(StrEnum):
 
 @dataclass
 class Waypoint(BaseAggregateRoot):
-    order_id: UUID
+    order_id: Order
     expected_arrival_time: datetime
     actual_arrival_time: datetime
     sequence: int
