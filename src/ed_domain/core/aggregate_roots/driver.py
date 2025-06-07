@@ -16,7 +16,6 @@ class Driver(BaseAggregateRoot):
     profile_image: str
     phone_number: str
     current_location: Location
-    residence_location: Location
     car: Car
     available: bool = False
     email: Optional[str] = None
