@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
+from uuid import UUID
 
 from ed_domain.core.entities.base_entity import BaseEntity
 
@@ -17,6 +18,7 @@ class Bill(BaseEntity):
     amount_in_birr: float
     bill_status: BillStatus
     due_date: datetime
+    order_id: UUID
 
     def update_status(self, new_status: BillStatus):
         if new_status not in BillStatus:
