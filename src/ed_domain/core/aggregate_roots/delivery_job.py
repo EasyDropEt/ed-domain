@@ -7,7 +7,7 @@ from uuid import UUID
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
 from ed_domain.core.aggregate_roots.driver import Driver
-from ed_domain.core.entities.waypoint import Waypoint
+from ed_domain.core.aggregate_roots.waypoint import Waypoint
 from ed_domain.core.value_objects.money import Money
 
 
