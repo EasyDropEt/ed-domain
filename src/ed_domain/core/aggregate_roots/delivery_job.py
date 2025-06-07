@@ -6,6 +6,7 @@ from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
+from ed_domain.core.aggregate_roots.driver import Driver
 from ed_domain.core.entities.waypoint import Waypoint
 from ed_domain.core.value_objects.money import Money
 
@@ -26,7 +27,7 @@ class DeliveryJob(BaseAggregateRoot):
     estimated_distance_in_kms: float
     estimated_time_in_minutes: int
     status: DeliveryJobStatus
-    driver_id: Optional[UUID] = None
+    driver: Optional[Driver] = None
 
     def add_waypoint(self, waypoint: Waypoint) -> None:
         self.waypoints.append(waypoint)
