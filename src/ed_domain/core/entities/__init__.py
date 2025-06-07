@@ -4,7 +4,6 @@ from ed_domain.core.entities.location import Location
 from ed_domain.core.entities.notification import Notification
 from ed_domain.core.entities.otp import Otp
 from ed_domain.core.entities.parcel import Parcel
-from ed_domain.core.entities.waypoint import Waypoint
 
 __all__ = [
     "Car",
@@ -13,5 +12,4 @@ __all__ = [
     "Notification",
     "Otp",
     "Parcel",
-    "Waypoint",
 ]

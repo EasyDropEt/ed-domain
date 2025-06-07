@@ -5,6 +5,7 @@ from ed_domain.core.aggregate_roots.consumer import Consumer
 from ed_domain.core.aggregate_roots.delivery_job import DeliveryJob
 from ed_domain.core.aggregate_roots.driver import Driver
 from ed_domain.core.aggregate_roots.order import Order
+from ed_domain.core.aggregate_roots.waypoint import Waypoint
 
 __all__ = [
     "AuthUser",
@@ -14,4 +15,5 @@ __all__ = [
     "Order",
     "Consumer",
     "Admin",
+    "Waypoint",
 ]
