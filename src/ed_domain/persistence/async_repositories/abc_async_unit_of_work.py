@@ -2,6 +2,8 @@ from abc import ABCMeta, abstractmethod
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
+from ed_domain.persistence.async_repositories.abc_async_api_key_repository import \
+    ABCAsyncApiKeyRepository
 from ed_domain.persistence.async_repositories.abc_async_auth_user_repository import \
     ABCAsyncAuthUserRepository
 from ed_domain.persistence.async_repositories.abc_async_bill_repository import \
@@ -87,3 +89,7 @@ class ABCAsyncUnitOfWork(metaclass=ABCMeta):
     @property
     @abstractmethod
     def parcel_repository(self) -> ABCAsyncParcelRepository: ...
+
+    @property
+    @abstractmethod
+    def api_key_repository(self) -> ABCAsyncApiKeyRepository: ...

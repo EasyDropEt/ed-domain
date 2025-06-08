@@ -1,3 +1,5 @@
+from ed_domain.persistence.async_repositories.abc_async_api_key_repository import \
+    ABCAsyncApiKeyRepository
 from ed_domain.persistence.async_repositories.abc_async_auth_user_repository import \
     ABCAsyncAuthUserRepository
 from ed_domain.persistence.async_repositories.abc_async_bill_repository import \
@@ -20,8 +22,12 @@ from ed_domain.persistence.async_repositories.abc_async_order_repository import 
     ABCAsyncOrderRepository
 from ed_domain.persistence.async_repositories.abc_async_otp_repository import \
     ABCAsyncOtpRepository
+from ed_domain.persistence.async_repositories.abc_async_parcel_repository import \
+    ABCAsyncParcelRepository
 from ed_domain.persistence.async_repositories.abc_async_unit_of_work import \
     ABCAsyncUnitOfWork
+from ed_domain.persistence.async_repositories.abc_async_waypoint_repository import \
+    ABCAsyncWaypointRepository
 
 __all__ = [
     "ABCAsyncAuthUserRepository",
@@ -36,4 +42,7 @@ __all__ = [
     "ABCAsyncOrderRepository",
     "ABCAsyncUnitOfWork",
     "ABCAsyncOtpRepository",
+    "ABCAsyncParcelRepository",
+    "ABCAsyncWaypointRepository",
+    "ABCAsyncApiKeyRepository",
 ]
