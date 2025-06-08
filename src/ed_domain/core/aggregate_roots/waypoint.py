@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import StrEnum
+from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
@@ -21,6 +22,7 @@ class WaypointType(StrEnum):
 
 @dataclass
 class Waypoint(BaseAggregateRoot):
+    delivery_job_id: UUID
     order: Order
     expected_arrival_time: datetime
     actual_arrival_time: datetime
