@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import StrEnum
+from uuid import UUID
 
 from ed_domain.core.entities.base_entity import BaseEntity
 
@@ -12,6 +13,7 @@ class ApiKeyStatus(StrEnum):
 
 @dataclass
 class ApiKey(BaseEntity):
+    business_id: UUID
     name: str
     description: str
     prefix: str
