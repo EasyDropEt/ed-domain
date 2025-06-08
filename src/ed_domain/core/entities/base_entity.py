@@ -1,10 +1,12 @@
+from dataclasses import dataclass
 from datetime import datetime
-from typing import TypedDict
-from uuid import UUID
+
+from ed_domain.core.base_domain_object import BaseDomainObject
 
 
-class BaseEntity(TypedDict):
-    id: UUID
+@dataclass
+class BaseEntity(BaseDomainObject):
     create_datetime: datetime
     update_datetime: datetime
     deleted: bool
+    deleted_datetime: datetime | None

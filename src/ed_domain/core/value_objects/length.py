@@ -4,12 +4,12 @@ from enum import StrEnum
 from ed_domain.core.value_objects.base_value_object import BaseValueObject
 
 
-class Currency(StrEnum):
-    ETB = "etb"
-    USD = "usd"
+class Unit(StrEnum):
+    KG = "kg"
+    G = "g"
 
 
 @dataclass
-class Money(BaseValueObject):
+class Length(BaseValueObject):
     value: float
-    currency: Currency
+    currency: Unit

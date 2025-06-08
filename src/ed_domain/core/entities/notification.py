@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from enum import StrEnum
 from uuid import UUID
 
@@ -10,6 +11,7 @@ class NotificationType(StrEnum):
     IN_APP = "IN_APP"
 
 
+@dataclass
 class Notification(BaseEntity):
     user_id: UUID
     notification_type: NotificationType
