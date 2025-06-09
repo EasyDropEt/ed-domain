@@ -3,9 +3,7 @@ from datetime import datetime
 from enum import StrEnum
 from uuid import UUID
 
-from ed_domain.core.aggregate_roots.base_aggregate_root import \
-    BaseAggregateRoot
-from ed_domain.core.aggregate_roots.order import Order
+from ed_domain.core.entities.base_entity import BaseEntity
 
 
 class WaypointStatus(StrEnum):
@@ -21,9 +19,9 @@ class WaypointType(StrEnum):
 
 
 @dataclass
-class Waypoint(BaseAggregateRoot):
+class Waypoint(BaseEntity):
     delivery_job_id: UUID
-    order: Order
+    order_id: UUID
     expected_arrival_time: datetime
     actual_arrival_time: datetime
     sequence: int

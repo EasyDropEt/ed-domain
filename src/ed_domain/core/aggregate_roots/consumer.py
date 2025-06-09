@@ -3,7 +3,6 @@ from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
-from ed_domain.core.entities.location import Location
 
 
 @dataclass
@@ -14,7 +13,7 @@ class Consumer(BaseAggregateRoot):
     phone_number: str
     profile_image_url: str
     email: str
-    location: Location
+    location_id: UUID
 
     def update_profile_image(self, new_image: str) -> None:
         self.profile_image_url = new_image
