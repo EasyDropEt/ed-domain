@@ -6,8 +6,6 @@ from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
-from ed_domain.core.aggregate_roots.business import Business
-from ed_domain.core.aggregate_roots.consumer import Consumer
 from ed_domain.core.entities.bill import Bill, BillStatus
 from ed_domain.core.entities.parcel import Parcel
 
@@ -25,10 +23,11 @@ class OrderStatus(StrEnum):
 class Order(BaseAggregateRoot):
     business_id: UUID
     consumer_id: UUID
+    order_number: str
+    order_status: OrderStatus
     latest_time_of_delivery: datetime
     bill: Bill
     parcel: Parcel
-    order_status: OrderStatus
     driver_id: Optional[UUID] = None
     customer_rating: Optional[int] = None
     expected_delivery_time: Optional[datetime] = None
@@ -64,6 +63,7 @@ class Order(BaseAggregateRoot):
         if self.order_status != OrderStatus.PICKED_UP:
             raise ValueError("Cannot complete an order that is not picked up.")
         self.completed_datetime = datetime.now(UTC)
+        self.actual_delivery_time = datetime.now(UTC)
         self.update_status(OrderStatus.COMPLETED)
 
     def cancel_order(self) -> None:
