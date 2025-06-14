@@ -28,6 +28,7 @@ class Order(BaseAggregateRoot):
     latest_time_of_delivery: datetime
     bill: Bill
     parcel: Parcel
+    distance_in_km: float
     driver_id: Optional[UUID] = None
     customer_rating: Optional[int] = None
     expected_delivery_time: Optional[datetime] = None
