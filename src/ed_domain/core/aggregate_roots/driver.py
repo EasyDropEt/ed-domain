@@ -1,11 +1,9 @@
 from dataclasses import dataclass
-from typing import Optional
 from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
 from ed_domain.core.entities.car import Car
-from ed_domain.core.entities.location import Location
 
 
 @dataclass
@@ -15,16 +13,16 @@ class Driver(BaseAggregateRoot):
     last_name: str
     profile_image: str
     phone_number: str
-    current_location: Location
+    location_id: UUID
     car: Car
+    email: str
     available: bool = False
-    email: Optional[str] = None
 
     def update_availability(self, available: bool) -> None:
         self.available = available
 
-    def update_current_location(self, new_location: Location) -> None:
-        self.current_location = new_location
+    def update_current_location(self, new_location_id: UUID) -> None:
+        self.location_id = new_location_id
 
     def update_profile_image(self, new_image: str) -> None:
         self.profile_image = new_image

@@ -4,7 +4,6 @@ from uuid import UUID
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
 from ed_domain.core.entities.api_key import ApiKey
-from ed_domain.core.entities.location import Location
 
 
 @dataclass
@@ -15,8 +14,11 @@ class Business(BaseAggregateRoot):
     owner_last_name: str
     phone_number: str
     email: str
-    location: Location
+    location_id: UUID
     api_keys: list[ApiKey]
+
+    def add_api_key(self, api_key: ApiKey) -> None:
+        self.api_keys.append(api_key)
 
     def update_business_name(self, new_name: str) -> None:
         self.business_name = new_name

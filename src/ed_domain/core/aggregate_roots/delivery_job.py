@@ -6,7 +6,7 @@ from uuid import UUID
 
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
-from ed_domain.core.aggregate_roots.waypoint import Waypoint
+from ed_domain.core.entities.waypoint import Waypoint, WaypointStatus
 from ed_domain.core.value_objects.money import Money
 
 
@@ -27,6 +27,21 @@ class DeliveryJob(BaseAggregateRoot):
     estimated_time_in_minutes: int
     status: DeliveryJobStatus
     driver_id: Optional[UUID] = None
+
+    def update_waypoint_status(
+        self, waypoint_id: UUID, waypoint_status: WaypointStatus
+    ) -> None:
+        updated = False
+        for waypoint in self.waypoints:
+            if waypoint.id == waypoint_id:
+                waypoint.update_status(waypoint_status)
+                updated = True
+                return
+
+        if not updated:
+            raise RuntimeError(
+                f"Waypoint with id {waypoint_id} was not found in this delivery job."
+            )
 
     def add_waypoint(self, waypoint: Waypoint) -> None:
         self.waypoints.append(waypoint)

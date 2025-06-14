@@ -23,3 +23,6 @@ class ABCAsyncGenericRepository(Generic[TEntity], metaclass=ABCMeta):
 
     @abstractmethod
     async def delete(self, id: UUID) -> bool: ...
+
+    @abstractmethod
+    async def save(self, entity: TEntity) -> TEntity: ...
