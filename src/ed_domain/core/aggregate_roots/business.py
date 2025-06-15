@@ -4,6 +4,7 @@ from uuid import UUID
 from ed_domain.core.aggregate_roots.base_aggregate_root import \
     BaseAggregateRoot
 from ed_domain.core.entities.api_key import ApiKey
+from ed_domain.core.entities.webhooks import Webhook
 
 
 @dataclass
@@ -16,6 +17,10 @@ class Business(BaseAggregateRoot):
     email: str
     location_id: UUID
     api_keys: list[ApiKey]
+    webhook: Webhook
+
+    def set_webhook(self, webhook: Webhook) -> None:
+        self.webhooks = webhook
 
     def add_api_key(self, api_key: ApiKey) -> None:
         self.api_keys.append(api_key)

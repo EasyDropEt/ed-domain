@@ -4,6 +4,7 @@ from ed_domain.core.entities.notification import Notification
 from ed_domain.core.entities.otp import Otp
 from ed_domain.core.entities.parcel import Parcel
 from ed_domain.core.entities.waypoint import Waypoint
+from ed_domain.core.entities.webhooks import Webhook
 
 __all__ = [
     "Car",
@@ -12,4 +13,5 @@ __all__ = [
     "Otp",
     "Parcel",
     "Waypoint",
+    "Webhook",
 ]
