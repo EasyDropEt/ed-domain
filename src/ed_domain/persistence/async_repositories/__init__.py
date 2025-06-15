@@ -28,6 +28,8 @@ from ed_domain.persistence.async_repositories.abc_async_unit_of_work import \
     ABCAsyncUnitOfWork
 from ed_domain.persistence.async_repositories.abc_async_waypoint_repository import \
     ABCAsyncWaypointRepository
+from ed_domain.persistence.async_repositories.abc_async_webhook_repository import \
+    ABCAsyncWebhookRepository
 
 __all__ = [
     "ABCAsyncAuthUserRepository",
@@ -45,4 +47,5 @@ __all__ = [
     "ABCAsyncParcelRepository",
     "ABCAsyncWaypointRepository",
     "ABCAsyncApiKeyRepository",
+    "ABCAsyncWebhookRepository",
 ]

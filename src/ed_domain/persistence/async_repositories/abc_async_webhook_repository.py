@@ -5,7 +5,7 @@ from ed_domain.persistence.async_repositories.abc_async_generic_repository impor
     ABCAsyncGenericRepository
 
 
-class ABCAsyncWebHookRepository(
+class ABCAsyncWebhookRepository(
     ABCAsyncGenericRepository[Webhook],
     metaclass=ABCMeta,
 ):

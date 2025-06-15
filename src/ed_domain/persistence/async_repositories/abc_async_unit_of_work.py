@@ -33,7 +33,7 @@ from ed_domain.persistence.async_repositories.abc_async_parcel_repository import
 from ed_domain.persistence.async_repositories.abc_async_waypoint_repository import \
     ABCAsyncWaypointRepository
 from ed_domain.persistence.async_repositories.abc_async_webhook_repository import \
-    ABCAsyncWebHookRepository
+    ABCAsyncWebhookRepository
 
 
 class ABCAsyncUnitOfWork(metaclass=ABCMeta):
@@ -104,4 +104,4 @@ class ABCAsyncUnitOfWork(metaclass=ABCMeta):
 
     @property
     @abstractmethod
-    def webhook_repository(self) -> ABCAsyncWebHookRepository: ...
+    def webhook_repository(self) -> ABCAsyncWebhookRepository: ...
