@@ -32,6 +32,8 @@ from ed_domain.persistence.async_repositories.abc_async_parcel_repository import
     ABCAsyncParcelRepository
 from ed_domain.persistence.async_repositories.abc_async_waypoint_repository import \
     ABCAsyncWaypointRepository
+from ed_domain.persistence.async_repositories.abc_async_webhook_repository import \
+    ABCAsyncWebHookRepository
 
 
 class ABCAsyncUnitOfWork(metaclass=ABCMeta):
@@ -43,6 +45,10 @@ class ABCAsyncUnitOfWork(metaclass=ABCMeta):
     @property
     @abstractmethod
     def admin_repository(self) -> ABCAsyncAdminRepository: ...
+
+    @property
+    @abstractmethod
+    def api_key_repository(self) -> ABCAsyncApiKeyRepository: ...
 
     @property
     @abstractmethod
@@ -86,6 +92,10 @@ class ABCAsyncUnitOfWork(metaclass=ABCMeta):
 
     @property
     @abstractmethod
+    def parcel_repository(self) -> ABCAsyncParcelRepository: ...
+
+    @property
+    @abstractmethod
     def auth_user_repository(self) -> ABCAsyncAuthUserRepository: ...
 
     @property
@@ -94,8 +104,4 @@ class ABCAsyncUnitOfWork(metaclass=ABCMeta):
 
     @property
     @abstractmethod
-    def parcel_repository(self) -> ABCAsyncParcelRepository: ...
-
-    @property
-    @abstractmethod
-    def api_key_repository(self) -> ABCAsyncApiKeyRepository: ...
+    def webhook_repository(self) -> ABCAsyncWebHookRepository: ...
