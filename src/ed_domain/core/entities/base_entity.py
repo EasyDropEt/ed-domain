@@ -15,3 +15,6 @@ class BaseEntity(BaseDomainObject):
     def delete(self) -> None:
         self.deleted = True
         self.deleted_datetime = datetime.now(UTC)
+
+    def update(self) -> None:
+        self.update_datetime = datetime.now(UTC)

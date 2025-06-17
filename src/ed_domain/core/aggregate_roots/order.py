@@ -39,12 +39,15 @@ class Order(BaseAggregateRoot):
     def set_customer_rating(self, rating: int) -> None:
         if not 1 <= rating <= 5:
             raise ValueError("Customer rating has to be between 1 and 5.")
+        self.customer_rating = rating
+        self.update()
 
     def update_bill_status(self, new_status: str) -> None:
         if new_status not in BillStatus:
             raise ValueError(f"Invalid bill status: {new_status}")
 
         self.bill.bill_status = BillStatus(new_status)
+        self.update()
 
     def assign_driver(self, driver_id: UUID) -> None:
         if self.order_status != OrderStatus.PENDING:
@@ -52,13 +55,16 @@ class Order(BaseAggregateRoot):
                 "Cannot assign driver to an order that is not pending.")
         self.driver_id = driver_id
         self.update_status(OrderStatus.IN_PROGRESS)
+        self.update()
 
     def pick_up_order(self) -> None:
         if self.order_status != OrderStatus.IN_PROGRESS:
             raise ValueError(
                 "Cannot complete an order that is not in progress.")
         self.picked_up_datetime = datetime.now(UTC)
+        self.bill.set_with_driver()
         self.update_status(OrderStatus.PICKED_UP)
+        self.update()
 
     def complete_order(self) -> None:
         if self.order_status != OrderStatus.PICKED_UP:
@@ -66,6 +72,7 @@ class Order(BaseAggregateRoot):
         self.completed_datetime = datetime.now(UTC)
         self.actual_delivery_time = datetime.now(UTC)
         self.update_status(OrderStatus.COMPLETED)
+        self.update()
 
     def cancel_order(self) -> None:
         if self.order_status in {OrderStatus.COMPLETED, OrderStatus.CANCELLED}:
@@ -73,9 +80,11 @@ class Order(BaseAggregateRoot):
                 "Cannot cancel an order that is already completed or cancelled."
             )
         self.update_status(OrderStatus.CANCELLED)
+        self.update()
 
     def update_status(self, new_status: OrderStatus) -> None:
         if new_status not in OrderStatus:
             raise ValueError(f"Invalid order status: {new_status}")
 
         self.order_status = new_status
+        self.update()

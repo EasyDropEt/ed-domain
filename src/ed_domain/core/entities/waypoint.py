@@ -28,6 +28,9 @@ class Waypoint(BaseEntity):
     waypoint_type: WaypointType
     waypoint_status: WaypointStatus
 
+    def complete(self):
+        self.waypoint_status = WaypointStatus.DONE
+
     def update_status(self, new_status: WaypointStatus) -> None:
         self.waypoint_status = new_status
 
